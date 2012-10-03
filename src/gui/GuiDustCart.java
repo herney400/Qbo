@@ -98,6 +98,11 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
         jPanelBusquedas.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Busquedas"))));
 
         jComboBoxTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo de búsqueda", "Informada", "No informada" }));
+        jComboBoxTipoBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipoBusquedaActionPerformed(evt);
+            }
+        });
 
         jComboBoxNoinformada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Amplitud", "Costo Uniforme", "Profundidad" }));
 
@@ -168,15 +173,15 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Nodos expandidos:");
 
-        jLabelProfundidad.setFont(new java.awt.Font("Ubuntu", 1, 18));
+        jLabelProfundidad.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabelProfundidad.setForeground(new java.awt.Color(17, 67, 210));
         jLabelProfundidad.setText("0");
 
-        jLabelNodosExpandidos.setFont(new java.awt.Font("Ubuntu", 1, 18));
+        jLabelNodosExpandidos.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabelNodosExpandidos.setForeground(new java.awt.Color(17, 67, 210));
         jLabelNodosExpandidos.setText("0");
 
-        jLabelTiempoComputo.setFont(new java.awt.Font("Ubuntu", 1, 18));
+        jLabelTiempoComputo.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabelTiempoComputo.setForeground(new java.awt.Color(17, 67, 210));
         jLabelTiempoComputo.setText("0");
 
@@ -261,7 +266,7 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
                 .addComponent(jPanelResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonVerSolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jPanelAmbiente.setBorder(javax.swing.BorderFactory.createTitledBorder("Ambiente"));
@@ -281,7 +286,7 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelAmbiente, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+                    .addComponent(jPanelAmbiente, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
                     .addComponent(jPanelControles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -298,6 +303,10 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
     private void jButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjecutarActionPerformed
         JOptionPane.showMessageDialog(null, evt);
     }//GEN-LAST:event_jButtonEjecutarActionPerformed
+
+    private void jComboBoxTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxTipoBusquedaActionPerformed
  
     
    private void dibujarMundo(){

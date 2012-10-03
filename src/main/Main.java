@@ -6,18 +6,23 @@ package main;
 
 import gui.GuiPrincipal;
 import gui.controlador.ControladorGuiPrincipal;
+import java.awt.Point;
 import javax.swing.UIManager;
+import modelo.Sensor;
+import preubas.Prueba1;
 
 /**
  *
  * @author Franjav
  */
 public class Main {
-
+    
+   
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) { }
@@ -26,6 +31,20 @@ public class Main {
         aplicacion.setControladorPrincipal(controlador);
         controlador.setGui(aplicacion);
         aplicacion.setVisible(true); 
+        
+        /**
+        Prueba1 pb= new Prueba1();
+        pb.pruebaAsignarMundo();
+        pb.printWorld();
+        System.out.println("= "+pb.arriba());
+        System.out.println("-> "+pb.derecha());
+        System.out.println("/ "+pb.abajo());
+        System.out.println("<- "+pb.izquierda());
+        
+        */
+        
+        
+        
     }
 }
 
