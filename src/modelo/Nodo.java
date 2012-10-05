@@ -18,7 +18,11 @@ public class Nodo {
      int pesoBasura=0;
      String ruta="";
      private int heuristica; 
-     
+     Estado estado;
+     Nodo padre;
+     int profundidad;
+     int costoDelaRuta;
+     String operadorAplicado;
      /*en caso de que la heuristica la hagamos
       * con entero, que creo es lo mas viable...
      */
@@ -33,6 +37,12 @@ public class Nodo {
     public Nodo() {
     
     }
+    public void esMeta(){
+    
+    
+    }
+    
+    
     public int getHeuristica() {
         return heuristica;
     }
