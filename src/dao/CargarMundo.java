@@ -11,6 +11,8 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import modelo.Expandir;
+import modelo.Nodo;
 
 /**
  * Permite cargar los datos de un archivo de texto con la abstraccion del mundo del 
@@ -18,13 +20,18 @@ import javax.swing.JOptionPane;
  * @author Franjav
  */
 public class CargarMundo extends JFrame {
-    
+    private Nodo nodo;
+    Expandir expandir;
     private Point pInicio;
     private Point pReciclaje;
     private Point pDeposito2k;
     private Point pDeposito3k;
     private int[][] mundo;
     private boolean mundoCargado;
+    private int peso=0;
+    private String inicio=" ";
+    private int costoruta=0;
+    private int profundidad=0;
     
     /**
      * Cargar los datos para el mundo del DustCart
@@ -109,6 +116,10 @@ public class CargarMundo extends JFrame {
             System.out.print("\n");
             mundoCargado = true;
         }//for		
+        
+        
+        expandir.expandirNodo(new Nodo(getpInicio(),peso,inicio,profundidad, costoruta));
+        
     }//fin leerArchivo()
     
     /**

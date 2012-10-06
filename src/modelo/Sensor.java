@@ -81,13 +81,7 @@ public class Sensor {
         valorEncontrado = mundo[ posicion.x ][ posicion.y - 1 ];
         return valorEncontrado;
     }//buscarIzquierda
-    
-    
-    
-    
-    
-    
-    
+            
     public void imprimirMundo(){
         for(int i=0; i<mundo.length; i++){
             for(int j=0; j<mundo[i].length; j++){

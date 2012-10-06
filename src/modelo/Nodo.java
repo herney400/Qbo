@@ -31,11 +31,11 @@ public class Nodo {
      */
      
      
-     public Nodo( Point posicionActual, int peso, String camino, int profundidad,int costoRut){
+     public Nodo( Point posicionActual, int peso, String camino, int profundidad,int costoRut, Estado es){
        //this.mundo=mundoActual;
        this.posicionActual=posicionActual;
        this.peso=peso;
-       //this.robot=rob;
+       this.estado=es;
        this.ruta=camino;
        this.profundidad=profundidad;
        this.costoDelaRuta=costoRut;
