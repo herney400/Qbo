@@ -15,12 +15,23 @@ public class Robot {
   Point posicionActual;
   private boolean avanzar=false;
   String encontro="";
-  
+  Sensor sensor;
     public Robot(int ambiente[][], Point posicionActual) {
         this.ambiente=ambiente;
         this.posicionActual=posicionActual;
     }    
-        
+     
+    /*Crear un robot 
+     
+     */
+    
+    public Robot(){
+    
+    }    
+    
+    
+    
+    
     public boolean atrazSensor(){
       if(posicionActual.y==0){
           avanzar=false;  
