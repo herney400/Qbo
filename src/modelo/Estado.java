@@ -26,15 +26,17 @@ public class Estado {
         int costo=estadoUpdate.getCosto();
         int pesoBasura=estadoUpdate.getPesoBasura();
         Point posicionNueva = p;
+     
         switch(movimiento){
             case 1:
                 if((matris[p.x+1][p.y]==2)||(matris[p.x+1][p.y]==3)||(matris[p.x+1][p.y]==5)){
                    
                     if((matris[p.x+1][p.y]==2)){
                         pesoBasura=pesoBasura+2;
+                        costo=costo+2;
                     }if(matris[p.x+1][p.y]==3){
                         pesoBasura=pesoBasura+3;
-                    
+                        costo=costo+3; 
                     }if(matris[p.x+1][p.y]==5){
                         pesoBasura=0;                    
                     }
@@ -46,13 +48,38 @@ public class Estado {
                     posicionNueva.y=p.y;        
 
             case 2:
-                if(){
-                
-                }
-                
-                
+                if((matris[p.x-1][p.y]==2)||(matris[p.x-1][p.y]==3)||(matris[p.x-1][p.y]==5)){
+                    if((matris[p.x-1][p.y]==2)){
+                        pesoBasura=pesoBasura+2;
+                         costo=costo+2;
+                    }if(matris[p.x-1][p.y]==3){
+                        pesoBasura=pesoBasura+3;
+                        costo=costo+3;
+                    }if(matris[p.x-1][p.y]==5){
+                        pesoBasura=0;
+                    }
+                } 
+                  matris[p.x-1][p.y]=4;
+                  matris[p.x][p.y]=0;
+                  posicionNueva.x=p.x-1;
+                  posicionNueva.x=p.y;
                 
             case 3:
+                if((matris[p.x][p.y-1]==2)||(matris[p.x][p.y-1]==3)||(matris[p.x][p.y-1]==5) ){
+                    if(matris[p.x][p.y-1]==2){
+                      pesoBasura=pesoBasura+2;
+                      costo=costo+2;
+                    }if(matris[p.x][p.y-1]==3){
+                      pesoBasura=pesoBasura+3;
+                      costo=costo+3;
+                    }if(matris[p.x][p.y-1]==5){
+                     pesoBasura=0;
+                    }                    
+                      }
+                    matris[p.x][p.y-1]=4;
+                    matris[p.x][p.y]=0;
+                    posicionNueva.x=p.x;
+                    posicionNueva.y=p.y-1;
                 
                 
             case 4:    
