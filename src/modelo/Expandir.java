@@ -62,10 +62,10 @@ public class Expandir {
                         profundidad++;
                         arbol.agregar(new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,3), Qbo));
 
-                   }if((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==0)||                  
-                        (nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==2)||
-                        (nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==3)||
-                        (nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==5)){
+                   }if((nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==0)||                  
+                        (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==2)||
+                        (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==3)||
+                        (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==5)){
                         camino="izquierda";
                         profundidad++;
                         arbol.agregar(new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,4), Qbo));           

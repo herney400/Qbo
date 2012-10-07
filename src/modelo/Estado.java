@@ -64,25 +64,43 @@ public class Estado {
                   posicionNueva.x=p.x-1;
                   posicionNueva.x=p.y;
                 
-            case 3:
-                if((matris[p.x][p.y-1]==2)||(matris[p.x][p.y-1]==3)||(matris[p.x][p.y-1]==5) ){
-                    if(matris[p.x][p.y-1]==2){
+            case 3://buscando a la derecha, se inicializa la nueva posicion 
+                if((matris[p.x][p.y+1]==2)||(matris[p.x][p.y+1]==3)||(matris[p.x][p.y+1]==5) ){
+                    if(matris[p.x][p.y+1]==2){
                       pesoBasura=pesoBasura+2;
                       costo=costo+2;
-                    }if(matris[p.x][p.y-1]==3){
+                    }if(matris[p.x][p.y+1]==3){
                       pesoBasura=pesoBasura+3;
                       costo=costo+3;
-                    }if(matris[p.x][p.y-1]==5){
+                    }if(matris[p.x][p.y+1]==5){
                      pesoBasura=0;
                     }                    
                       }
-                    matris[p.x][p.y-1]=4;
+                    matris[p.x][p.y+1]=4;
                     matris[p.x][p.y]=0;
                     posicionNueva.x=p.x;
-                    posicionNueva.y=p.y-1;
+                    posicionNueva.y=p.y+1;
                 
                 
-            case 4:    
+            case 4: //buscando a la izquierda, se inicializa la nueva posicion y estado.
+                if((matris[p.x][p.y-1]==2)||(matris[p.x][p.y-1]==3)||(matris[p.x][p.y-1]==5)){
+                
+                  if(matris[p.x][p.y-1]==2){
+                  
+                    pesoBasura=pesoBasura+2;
+                    costo=costo+2;
+                  }if(matris[p.x][p.y-1]==3){
+                    pesoBasura=pesoBasura+3;
+                    costo=costo+3;
+                  }if(matris[p.x][p.y-1]==5){
+                    pesoBasura=0;
+                  }
+            
+                 }
+                matris[p.x][p.y-1]=4;
+                matris[p.x][p.y]=0;
+                posicionNueva.x=p.x;
+                posicionNueva.y=p.y;
                 
         }
         
