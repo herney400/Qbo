@@ -36,31 +36,39 @@ public class Expandir {
                  (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==-1)){
                   return false;
                   
-                  
               }else{
                     if( (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==0)||
-                        (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==2)){
+                        (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==2)||
+                        (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==5)||
+                        (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==3)){
                         camino="abajo";
                         profundidad++;
-                        arbol.agregar(new Nodo(camino,Estado.siguienteEstado(estadoTemp,nodotemporal.robot.posicionActual ), Qbo));
+                        arbol.agregar(new Nodo(camino,Estado.siguienteEstado(estadoTemp,nodotemporal.robot.posicionActual,1 ), Qbo));
 
                     }if(((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==0)||
-                         ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==3)){
+                        ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==3)||
+                        ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==5)||
+                        ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==2)){
                          camino="arriba";
                          profundidad++;
-                        arbol.agregar(new Nodo(camino,Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual), Qbo));
+                        arbol.agregar(new Nodo(camino,Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,2), Qbo));
 
                     }if(((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==0)||
-                         ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==5)){
+                         ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==5)||
+                         ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==2)||
+                         ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==3)){
+                        
                         camino="derecha";
                         profundidad++;
-                        arbol.agregar(new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual), Qbo));
+                        arbol.agregar(new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,3), Qbo));
 
                    }if((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==0)||                  
-                        (nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==0)){
+                        (nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==2)||
+                        (nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==3)||
+                        (nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==5)){
                         camino="izquierda";
                         profundidad++;
-                        arbol.agregar(new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual), Qbo));           
+                        arbol.agregar(new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,4), Qbo));           
                    }
                    return true;
               }
