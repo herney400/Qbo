@@ -118,7 +118,7 @@ public class CargarMundo extends JFrame {
         }//for		
         
         
-        expandir.expandirNodo(new Nodo(getpInicio(),peso,inicio,profundidad, costoruta));
+        expandir.expandirNodo(new Nodo(inicio, null, null));
         
     }//fin leerArchivo()
     

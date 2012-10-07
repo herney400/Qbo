@@ -13,14 +13,14 @@ import java.awt.Point;
 public class Nodo {
      int mundo[][];
      
-     Point posicionActual;
+   //  Point posicionActual;
      int peso;
      Robot robot; 
      int pesoBasura=0;
      String ruta="";
      private int heuristica; 
      Expandir espan;
-     Estado estado;
+     private EstadoActual estado;
      Nodo padre;
      int profundidad;
      int costoDelaRuta;
@@ -31,15 +31,11 @@ public class Nodo {
      */
      
      
-     public Nodo( Point posicionActual, int peso, String camino, int profundidad,int costoRut, Estado es){
-       //this.mundo=mundoActual;
-       this.posicionActual=posicionActual;
-       this.peso=peso;
-       this.estado=es;
-       this.ruta=camino;
-       this.profundidad=profundidad;
-       this.costoDelaRuta=costoRut;
-    }
+     public Nodo(  String camino, EstadoActual estadoactual, Robot Qbo){
+    
+       this.estado=estadoactual;
+
+     }
      
      
     /*constructor 2*/ 
@@ -55,9 +51,9 @@ public class Nodo {
     public int getHeuristica() {
         return heuristica;
     }
-    public Point getPosicionActual() {
-        return posicionActual;
-    }
+//    public Point getPosicionActual() {
+//        return posicionActual;
+//    }
 
     public int getPesoBasura() {
         return pesoBasura;
@@ -80,6 +76,20 @@ public class Nodo {
     public Robot getRobot() {
         return robot;
     }   
+
+    /**
+     * @return the estado
+     */
+    public EstadoActual getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(EstadoActual estado) {
+        this.estado = estado;
+    }
      
     
 }

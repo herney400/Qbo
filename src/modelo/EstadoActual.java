@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.awt.Point;
+
 /**
  *
  * @author fidelhpc
@@ -15,6 +17,7 @@ public class EstadoActual {
       private int costo=0;
       private int pesoBasura=0;
       private Estado estado;
+      private Point posicionActual;
       /*
        Esta clase me genera el estado que va a ser visto como actual 
        a partir del nodo raiz..
@@ -22,7 +25,7 @@ public class EstadoActual {
        */ 
   
        
-      public EstadoActual(int [][] mundo, int costo,int pesoBasura){
+      public EstadoActual(int [][] mundo, int costo,int pesoBasura,  Point posicionActual){
          
           
           for (int i = 0; i < mundo.length; i++) {
@@ -32,6 +35,8 @@ public class EstadoActual {
           }
         this.costo=costo;
         this.pesoBasura=pesoBasura;
+        this.posicionActual=posicionActual;
+        
       }
 
     /**

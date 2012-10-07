@@ -4,10 +4,30 @@
  */
 package modelo;
 
+import java.awt.Point;
+
 /**
  *
  * @author fidelhpc
  */
 public class Estado {
     
+     
+    public Estado(){
+    
+    
+    
+    }
+    
+    public static EstadoActual siguienteEstado( EstadoActual estadoUpdate, Point p){
+        int matris[][]=estadoUpdate.getAmbiente();
+        int costo=estadoUpdate.getCosto();
+        int pesoBasura=estadoUpdate.getPesoBasura();
+        
+        
+        //return new EstadoActual ;
+        
+        
+        
+    }
 }

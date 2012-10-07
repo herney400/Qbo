@@ -7,15 +7,15 @@ package modelo;
 import dao.CargarMundo;
 import estructuras.Cola;
 import java.awt.Point;
-import java.awt.geom.Point2D;
+//import java.awt.geom.Point2D;
 
 /**
  *
  * @author fidelhpc
  */
 public class Expandir {
-    Robot Qbo=new Robot();
-    Nodo temporal;
+    
+    
     Cola arbol=new Cola();
     CargarMundo cMundo;
     int peso=0;
@@ -23,50 +23,49 @@ public class Expandir {
     int profundidad=0;
     int costo=0;
     Estado estado;
-    public void expandirNodo(Nodo nodo){
+    public boolean expandirNodo(Nodo nodo){
         
-        
-        if(temporal.esMeta()){
+        EstadoActual estadoTemp=nodo.getEstado();
+        Robot Qbo=nodo.getRobot();  
+       Nodo nodotemporal=nodo;
+        if(nodotemporal.esMeta()){
            solucion();
-           
+           return true;
         }else{
-           if((temporal.robot.sensor.buscarAbajo(temporal.robot.posicionActual))==0){
-               camino="abajo";
-               profundidad++;
-               arbol.agregar(new Nodo( new Point(temporal.robot.posicionActual.x+1, temporal.robot.posicionActual.y),peso,camino,profundidad,costo,
-                       estado.siguienteEstado(nodo.getMundo(), costo, peso)));
-           
-           }if((temporal.robot.sensor.buscarArriba(temporal.robot.posicionActual))==0){
-               camino="arriba";
-               profundidad++;
-               arbol.agregar(new Nodo( new Point(temporal.robot.posicionActual.x-1, temporal.robot.posicionActual.y),peso,camino,profundidad,costo ));
-           
-           }if((temporal.robot.sensor.buscarDerecha(temporal.robot.posicionActual))==0){
-               camino="derecha";
-               profundidad++;
-               arbol.agregar(new Nodo( new Point(temporal.robot.posicionActual.x, temporal.robot.posicionActual.y+1),peso,camino,profundidad,costo ));
-           
-          }if(temporal.robot.sensor.buscarDerecha(temporal.robot.posicionActual)==0){
-               camino="izquierda";
-               profundidad++;
-               arbol.agregar(new Nodo( new Point(temporal.robot.posicionActual.x, temporal.robot.posicionActual.y+1),peso,camino,profundidad,costo ));
-           
-          
-          }
-            
-            
-            
-            
-            
-            
-            
-        }
+              if((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==-1)||
+                 (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==-1)){
+                  return false;
+                  
+                  
+              }else{
+                    if( (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==0)||
+                        (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==2)){
+                        camino="abajo";
+                        profundidad++;
+                        arbol.agregar(new Nodo(camino,Estado.siguienteEstado(estadoTemp,nodotemporal.robot.posicionActual ), Qbo));
+
+                    }if(((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==0)||
+                         ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==3)){
+                         camino="arriba";
+                         profundidad++;
+                        arbol.agregar(new Nodo(camino,Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual), Qbo));
+
+                    }if(((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==0)||
+                         ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==5)){
+                        camino="derecha";
+                        profundidad++;
+                        arbol.agregar(new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual), Qbo));
+
+                   }if((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==0)||                  
+                        (nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual)==0)){
+                        camino="izquierda";
+                        profundidad++;
+                        arbol.agregar(new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual), Qbo));           
+                   }
+                   return true;
+              }
+         }
         
-        
-        
-        
-      
-    
     }
     public void solucion(){}
     
