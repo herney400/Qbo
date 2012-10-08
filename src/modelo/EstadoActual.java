@@ -80,6 +80,20 @@ public class EstadoActual {
     public void setPesoBasura(int pesoBasura) {
         this.pesoBasura = pesoBasura;
     }
+
+    /**
+     * @return the posicionActual
+     */
+    public Point getPosicionActual() {
+        return posicionActual;
+    }
+
+    /**
+     * @param posicionActual the posicionActual to set
+     */
+    public void setPosicionActual(Point posicionActual) {
+        this.posicionActual = posicionActual;
+    }
       
       
       

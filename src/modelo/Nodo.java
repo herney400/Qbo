@@ -26,27 +26,41 @@ public class Nodo {
      int costoDelaRuta;
      String operadorAplicado;
      
-     /*en caso de que la heuristica la hagamos
-      * con entero, que creo es lo mas viable...
-     */
-     
+
      
      public Nodo(  String camino, EstadoActual estadoactual, Robot Qbo){
     
        this.estado=estadoactual;
-
+       
      }
      
-     
-    /*constructor 2*/ 
-    public Nodo() {
+    /*constructor 2 elaborado para crear el nodo padre y a partir de el 
+      empezar el expandir 
+     */ 
+    public Nodo(int mundo[][]) {
     
+        estado.setAmbiente(mundo);
+        estado.setCosto(peso);
+        estado.setPesoBasura(pesoBasura);
+        estado.setPosicionActual(inicializaPosicion(mundo));
     }
     public boolean esMeta(){
-    boolean meta=true;
-    return meta;
+      boolean meta=true;
+      return meta;
     }
     
+    
+    public Point inicializaPosicion(int mundo[][]){
+       Point posicionInicial = null;
+        for (int i = 0; i < mundo.length; i++) {
+            for (int j = 0; j < mundo.length; j++) {
+                 if(mundo[i][j]==5){
+                    posicionInicial.setLocation(i, j);
+                 }
+            }
+        }
+        return posicionInicial;
+    }
     
     public int getHeuristica() {
         return heuristica;

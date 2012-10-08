@@ -27,7 +27,7 @@ public class Estado {
         int pesoBasura=estadoUpdate.getPesoBasura();
         Point posicionNueva = p;
      
-        switch(movimiento){
+        switch(movimiento){ //buscando abajo
             case 1:
                 if((matris[p.x+1][p.y]==2)||(matris[p.x+1][p.y]==3)||(matris[p.x+1][p.y]==5)){
                    
@@ -47,7 +47,7 @@ public class Estado {
                     posicionNueva.x=p.x+1;
                     posicionNueva.y=p.y;        
 
-            case 2:
+            case 2:  //buscando arriba
                 if((matris[p.x-1][p.y]==2)||(matris[p.x-1][p.y]==3)||(matris[p.x-1][p.y]==5)){
                     if((matris[p.x-1][p.y]==2)){
                         pesoBasura=pesoBasura+2;
