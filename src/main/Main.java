@@ -9,7 +9,7 @@ import gui.controlador.ControladorGuiPrincipal;
 import java.awt.Point;
 import javax.swing.UIManager;
 import modelo.Sensor;
-import preubas.Prueba1;
+
 
 /**
  *

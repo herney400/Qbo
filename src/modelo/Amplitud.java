@@ -8,13 +8,14 @@ package modelo;
  *
  * @author fidelhpc
  */
-public class Amplitud {
+public class Amplitud extends Expandir{
     int mundo[][];
-    private final Nodo raiznodo;
+//    private final Nodo raiznodo;
     
-    public  Amplitud(int mundoOriginal[][]){
-        
-        
+    public  Amplitud(Nodo raiz,int mundoOriginal[][]){
+         super();
+         this.mundo=mundoOriginal.clone();
+         
     }
     
     public  void solucion(Nodo nodo){

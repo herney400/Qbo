@@ -43,6 +43,7 @@ public class Nodo {
         estado.setCosto(peso);
         estado.setPesoBasura(pesoBasura);
         estado.setPosicionActual(inicializaPosicion(mundo));
+        
     }
     public boolean esMeta(){
       boolean meta=true;
