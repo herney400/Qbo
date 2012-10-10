@@ -14,9 +14,9 @@ import java.util.ArrayList;
  *
  * @author fidelhpc
  */
-public class Expandir {
+public abstract class Expandir {
     
-    
+    protected ArrayList<Nodo> listaNodos;   
     Cola arbol=new Cola();
     CargarMundo cMundo;
     int peso=0;
@@ -25,11 +25,11 @@ public class Expandir {
     int costo=0;
     Estado estado;
     public ArrayList<Nodo> expandirNodo(Nodo nodo){
-        
+      
         EstadoActual estadoTemp=nodo.getEstado();
         Nodo hijo=null;
         Robot Qbo=nodo.getRobot();  
-       Nodo nodotemporal=nodo;
+        Nodo nodotemporal=nodo;
        ArrayList <Nodo> hijos=new ArrayList<Nodo>();
 //        if(nodotemporal.esMeta()){
 //           solucion();
@@ -48,7 +48,9 @@ public class Expandir {
                         profundidad++;
                         
                           hijo= new Nodo(camino,Estado.siguienteEstado(estadoTemp,nodotemporal.robot.posicionActual,1 ), Qbo);
-                             
+                          if(hijo!=null){
+                            hijos.add(hijo);
+                          }   
                              
                     }if(((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==0)||
                         ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==3)||
@@ -57,16 +59,19 @@ public class Expandir {
                          camino="arriba";
                          profundidad++;
                         hijo = new Nodo(camino,Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,2), Qbo);
-
+                            if(hijo!=null){
+                                hijos.add(hijo);
+                            }
                     }if(((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==0)||
                          ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==5)||
                          ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==2)||
-                         ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==3)){
-                        
+                         ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==3)){                        
                         camino="derecha";
                         profundidad++;
                         hijo=new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,3), Qbo);
-
+                            if(hijo!=null){
+                              hijos.add(hijo);
+                            }
                    }if((nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==0)||                  
                         (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==2)||
                         (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==3)||
@@ -74,6 +79,10 @@ public class Expandir {
                         camino="izquierda";
                         profundidad++;
                         hijo = new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,4), Qbo);           
+                          if(hijo!=null){
+                            hijos.add(hijo);
+                          }
+                   
                    }
                   
               }
@@ -83,7 +92,7 @@ public class Expandir {
         
     }
     
-    
+    public abstract Nodo ejecutar ();
     
     
     

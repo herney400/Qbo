@@ -17,11 +17,11 @@ public class Nodo {
      int peso;
      Robot robot; 
      int pesoBasura=0;
-     String ruta="";
+     private String ruta="";
      private int heuristica; 
      Expandir espan;
      private EstadoActual estado;
-     Nodo padre;
+     private Nodo padre;
      int profundidad;
      int costoDelaRuta;
      String operadorAplicado;
@@ -106,5 +106,37 @@ public class Nodo {
         this.estado = estado;
     }
      
-    
+     public Nodo clone()
+    {
+        Nodo nodo=new Nodo(  ruta, estado, robot);
+        return nodo;
+    }
+
+    /**
+     * @return the ruta
+     */
+    public String getRuta() {
+        return ruta;
+    }
+
+    /**
+     * @param ruta the ruta to set
+     */
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+
+    /**
+     * @return the padre
+     */
+    public Nodo getPadre() {
+        return padre;
+    }
+
+    /**
+     * @param padre the padre to set
+     */
+    public void setPadre(Nodo padre) {
+        this.padre = padre;
+    }
 }

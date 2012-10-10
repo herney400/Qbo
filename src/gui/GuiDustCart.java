@@ -4,10 +4,17 @@
  */
 package gui;
 
+import dao.CargarMundo;
 import gui.controlador.ControladorGuiDustCart;
+import java.awt.Point;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import modelo.CrearBusqueda;
+import modelo.EstadoActual;
+import modelo.Expandir;
+import modelo.Nodo;
+import modelo.Robot;
 
 
 /**
@@ -295,13 +302,34 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
+    /*Aqui hay que crear los algoritmos   */
+        
+        
         controlador.cargarMundo();
         cargarImagenes();
         controlador.setImagenMundo();
+        CargarMundo cm=new CargarMundo();
+        
+        EstadoActual esta= new EstadoActual(cm.getMundo(), 0, 0, cm.getpInicio());
+        Robot Qbo=new Robot(cm.getMundo(), cm.getpInicio());
+        Nodo raiz= new Nodo("", esta, Qbo);
+        CrearBusqueda cb=new CrearBusqueda(raiz, cm.getpInicio(), cm.getMundo());
+        
     }//GEN-LAST:event_jButtonCargarActionPerformed
 
     private void jButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjecutarActionPerformed
-        JOptionPane.showMessageDialog(null, evt);
+       String  selec=(String) jComboBoxNoinformada.getSelectedItem();
+        Expandir expandir=null;
+        expandir=crearbusqueda.iniciarnoInformada(selec);
+        if(expandir!=null){
+            long tiempoinicio=System.currentTimeMillis();
+            Nodo respuesta=expandir.ejecutar();
+             long tiempo=System.currentTimeMillis()-tiempoinicio;
+
+        }
+        
+        
+        
     }//GEN-LAST:event_jButtonEjecutarActionPerformed
 
     private void jComboBoxTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoBusquedaActionPerformed
@@ -372,5 +400,5 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
-    
+    private  CrearBusqueda crearbusqueda;
 }
