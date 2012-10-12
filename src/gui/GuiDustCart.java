@@ -302,8 +302,7 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
-    /*Aqui hay que crear los algoritmos   */
-        
+    
         
         controlador.cargarMundo();
         cargarImagenes();

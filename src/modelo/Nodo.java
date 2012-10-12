@@ -16,7 +16,7 @@ public class Nodo {
    //  Point posicionActual;
      int peso;
      Robot robot; 
-     int pesoBasura=0;
+ //    int pesoBasura=0;
      private String ruta="";
      private int heuristica; 
      Expandir espan;
@@ -31,20 +31,21 @@ public class Nodo {
      public Nodo(  String camino, EstadoActual estadoactual, Robot Qbo){
     
        this.estado=estadoactual;
-       
+       this.ruta=camino;
+       this.robot=Qbo;
      }
      
     /*constructor 2 elaborado para crear el nodo padre y a partir de el 
       empezar el expandir 
      */ 
-    public Nodo(int mundo[][]) {
-    
-        estado.setAmbiente(mundo);
-        estado.setCosto(peso);
-        estado.setPesoBasura(pesoBasura);
-        estado.setPosicionActual(inicializaPosicion(mundo));
-        
-    }
+//    public Nodo(int mundo[][]) {
+//    
+//        estado.setAmbiente(mundo);
+//        estado.setCosto(peso);
+//        estado.setPesoBasura(pesoBasura);
+//        estado.setPosicionActual(inicializaPosicion(mundo));
+//        
+//    }
     public boolean esMeta(){
       boolean meta=true;
       return meta;
@@ -66,15 +67,7 @@ public class Nodo {
     public int getHeuristica() {
         return heuristica;
     }
-//    public Point getPosicionActual() {
-//        return posicionActual;
-//    }
 
-    public int getPesoBasura() {
-        return pesoBasura;
-    }
-
-    
 
     public void setMundo(int[][] mundo) {
         this.mundo = mundo;

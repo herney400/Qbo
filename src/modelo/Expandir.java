@@ -20,7 +20,7 @@ public abstract class Expandir {
     Cola arbol=new Cola();
     CargarMundo cMundo;
     int peso=0;
-    String camino;
+   // String camino;
     int profundidad=0;
     int costo=0;
     Estado estado;
@@ -44,10 +44,11 @@ public abstract class Expandir {
                         (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==2)||
                         (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==5)||
                         (nodotemporal.robot.sensor.buscarAbajo(nodotemporal.robot.posicionActual)==3)){
-                        camino="abajo";
+                        String  camino="↓";
                         profundidad++;
-                        
+                        crearCamino(camino, nodotemporal);
                           hijo= new Nodo(camino,Estado.siguienteEstado(estadoTemp,nodotemporal.robot.posicionActual,1 ), Qbo);
+                          
                           if(hijo!=null){
                             hijos.add(hijo);
                           }   
@@ -56,8 +57,9 @@ public abstract class Expandir {
                         ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==3)||
                         ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==5)||
                         ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.robot.posicionActual))==2)){
-                         camino="arriba";
+                        String camino="↑";
                          profundidad++;
+                          crearCamino(camino, nodotemporal);
                         hijo = new Nodo(camino,Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,2), Qbo);
                             if(hijo!=null){
                                 hijos.add(hijo);
@@ -66,8 +68,9 @@ public abstract class Expandir {
                          ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==5)||
                          ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==2)||
                          ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.robot.posicionActual))==3)){                        
-                        camino="derecha";
+                         String  camino="→";
                         profundidad++;
+                         crearCamino(camino, nodotemporal);
                         hijo=new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,3), Qbo);
                             if(hijo!=null){
                               hijos.add(hijo);
@@ -76,8 +79,9 @@ public abstract class Expandir {
                         (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==2)||
                         (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==3)||
                         (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.robot.posicionActual)==5)){
-                        camino="izquierda";
+                       String   camino="←";
                         profundidad++;
+                       crearCamino(camino, nodotemporal);
                         hijo = new Nodo(camino, Estado.siguienteEstado(estadoTemp, nodotemporal.robot.posicionActual,4), Qbo);           
                           if(hijo!=null){
                             hijos.add(hijo);
@@ -90,6 +94,35 @@ public abstract class Expandir {
               
         return hijos;
         
+    }
+    
+    public String crearCamino(String operador,Nodo nodo){
+     //Ruta que guardara la ruta del padre y al padre
+        String ruta;
+        //Costo guardará el costo de avanzar al hijo
+        double costo;
+        //Nodo estado que se va a retornar
+     
+        try{
+
+        //Si la cadenas estan vacias no usar comas
+        if(nodo.getRuta().equals(""))
+            operador=nodo.getRuta()+operador;
+        else operador=nodo.getRuta()+","+operador;
+       
+        if(nodo.getRuta().equals(""))
+            ruta="("+nodo.getEstado().getPosicionActual().x+","+nodo.getEstado().getPosicionActual().y+")";
+        else 
+            ruta=nodo.getRuta()+",("+nodo.getEstado().getPosicionActual().x+","+nodo.getEstado().getPosicionActual().y+")";
+        }catch(OutOfMemoryError exc)
+        {
+            System.err.println("LLego al limite de memoria de java este nodo no se expande");
+            System.err.println("Nodo: "+nodo.getEstado().getPosicionActual().x+","+nodo.getEstado().getPosicionActual().y);
+//            System.err.println("Profundidad: "+nodo.getEstado().get);
+//            System.out.println("Operadores: "+padre.getOperador());
+//            return null;
+        }
+    return operador;
     }
     
     public abstract Nodo ejecutar ();

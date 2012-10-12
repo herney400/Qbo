@@ -46,7 +46,7 @@ public class Amplitud extends Expandir{
     }
     public boolean esMeta(Nodo nodo){
     
-        nodo.getPesoBasura();
+       
         
         return true;
     }

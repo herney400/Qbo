@@ -26,7 +26,7 @@ public class CargarMundo extends JFrame {
     private Point pReciclaje;
     private Point pDeposito2k;
     private Point pDeposito3k;
-    private int[][] mundo;
+    private int[][] mundo= new int[12][12];;
     private boolean mundoCargado;
     private int peso=0;
     private String inicio=" ";
@@ -41,7 +41,7 @@ public class CargarMundo extends JFrame {
         this.pReciclaje = new Point();
         this.pDeposito2k = new Point();
         this.pDeposito3k = new Point();
-        mundo = new int[12][12];
+        
         mundoCargado = false;
     }
     

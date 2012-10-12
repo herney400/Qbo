@@ -13,11 +13,12 @@ import java.awt.Point;
 public class EstadoActual {
     
     
-      private int ambiente[][];
+      private int ambiente[][]= new int[12][12];
       private int costo=0;
       private int pesoBasura=0;
       private Estado estado;
       private Point posicionActual;
+//      private int 
       /*
        Esta clase me genera el estado que va a ser visto como actual 
        a partir del nodo raiz..
@@ -30,7 +31,7 @@ public class EstadoActual {
           
           for (int i = 0; i < mundo.length; i++) {
               for (int j = 0; j < mundo.length; j++) {
-                   ambiente[i][j]=mundo[i][j];
+             ambiente[i][j]=mundo[i][j];
               }
           }
         this.costo=costo;
@@ -55,6 +56,7 @@ public class EstadoActual {
 
     /**
      * @return the costo
+     * 
      */
     public int getCosto() {
         return costo;
