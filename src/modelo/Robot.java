@@ -27,27 +27,25 @@ public class Robot {
     
     public Robot(){
     
-    }    
-    
-    
-    
+    }   
     
     public boolean atrazSensor(){
-      if(posicionActual.y==0){
+        
+      if(posicionActual.x==0){
           avanzar=false;  
           encontro="nopuedo";
         }else{
-                if(ambiente[posicionActual.x][posicionActual.y-1]!=1){
-                   if(ambiente[posicionActual.x][posicionActual.y-1]==2){
+                if(ambiente[posicionActual.y][posicionActual.x-1]!=1){
+                   if(ambiente[posicionActual.y][posicionActual.x-1]==2){
                     encontro="2k";  
                      avanzar=true;
-                   }if(ambiente[posicionActual.x][posicionActual.y-1]==3){
+                   }if(ambiente[posicionActual.y][posicionActual.x-1]==3){
                     encontro="3k";
                      avanzar=true;
-                   }if(ambiente[posicionActual.x][posicionActual.y-1]==4){
+                   }if(ambiente[posicionActual.y][posicionActual.x-1]==4){
                     encontro="inicio";
                      avanzar=true;
-                   }if(ambiente[posicionActual.x][posicionActual.y-1]==5){
+                   }if(ambiente[posicionActual.y][posicionActual.x-1]==5){
                     encontro="deposito";
                      avanzar=true;
                    }                    
@@ -60,21 +58,21 @@ public class Robot {
     }
     
     public boolean arribaSensor(){        
-        if(posicionActual.x==0){
+        if(posicionActual.y==0){
             encontro="nopuedo";
             avanzar=false;        
         }else{
-            if(ambiente[posicionActual.x-1][posicionActual.y]!=1){
-               if(ambiente[posicionActual.x-1][posicionActual.y]==2){
+            if(ambiente[posicionActual.y-1][posicionActual.x]!=1){
+               if(ambiente[posicionActual.y-1][posicionActual.x]==2){
                   encontro="2k";  
                   avanzar=true;
-               }if(ambiente[posicionActual.x-1][posicionActual.y]==3){
+               }if(ambiente[posicionActual.y-1][posicionActual.x]==3){
                   encontro="3k";
                   avanzar=true;
-               }if(ambiente[posicionActual.x-1][posicionActual.y]==4){
+               }if(ambiente[posicionActual.y-1][posicionActual.x]==4){
                   encontro="inicio";
                   avanzar=true;
-               }if(ambiente[posicionActual.x-1][posicionActual.y]==5){
+               }if(ambiente[posicionActual.y-1][posicionActual.x]==5){
                   encontro="deposito";
                   avanzar=true;
                }
@@ -87,21 +85,22 @@ public class Robot {
     }
     
    public boolean abajoSensor(){
-       if(posicionActual.x==ambiente.length){
+       
+       if(posicionActual.y==ambiente.length){
              avanzar=false;          
              encontro="nopuedo";
        }else{
-           if(ambiente[posicionActual.x+1][posicionActual.y]!=1){
-             if(ambiente[posicionActual.x+1][posicionActual.y]==2){
+           if(ambiente[posicionActual.x][posicionActual.y+1]!=1){
+             if(ambiente[posicionActual.x][posicionActual.y+1]==2){
               encontro="2k";
               avanzar=true;
-             }if(ambiente[posicionActual.x+1][posicionActual.y]==3){
+             }if(ambiente[posicionActual.x][posicionActual.y+1]==3){
               encontro="3k";
               avanzar=true;
-             }if(ambiente[posicionActual.x+1][posicionActual.y]==4){
+             }if(ambiente[posicionActual.x][posicionActual.y+1]==4){
               encontro="inicio"; 
               avanzar=true;
-             }if(ambiente[posicionActual.x+1][posicionActual.y]==5){
+             }if(ambiente[posicionActual.x][posicionActual.y+1]==5){
               encontro="deposito";
               avanzar=true;
              }
@@ -120,17 +119,17 @@ public class Robot {
           avanzar=false;
           encontro="nopuedo";
        }else{
-           if(ambiente[posicionActual.x][posicionActual.y+1]!=1){
-             if(ambiente[posicionActual.x][posicionActual.y+1]==2){
+           if(ambiente[posicionActual.x+1][posicionActual.y]!=1){
+             if(ambiente[posicionActual.x+1][posicionActual.y]==2){
                encontro="2k";
                avanzar=true;
-             }if(ambiente[posicionActual.x][posicionActual.y+1]==3){
+             }if(ambiente[posicionActual.x+1][posicionActual.y]==3){
                encontro="3k";
                avanzar=true;
-             }if(ambiente[posicionActual.x][posicionActual.y+1]==4){
+             }if(ambiente[posicionActual.x+1][posicionActual.y]==4){
                encontro="inicio";
                avanzar=true;
-             }if(ambiente[posicionActual.x][posicionActual.y+1]==5){
+             }if(ambiente[posicionActual.x+1][posicionActual.y]==5){
                encontro="deposito";
                avanzar=true;
              }
