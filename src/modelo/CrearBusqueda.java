@@ -41,7 +41,7 @@ public class CrearBusqueda {
     public  Expandir iniciarnoInformada(String tipo){
     
      Expandir expandir=null;
-        if(tipo.equals("amplitud")){
+        if(tipo.equals("Amplitud")){
           expandir= new Amplitud(nodoRaiz.clone(),pInicial,mapa   );
         
         }else

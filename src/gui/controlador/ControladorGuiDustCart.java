@@ -6,6 +6,7 @@ package gui.controlador;
 
 import dao.CargarMundo;
 import gui.GuiDustCart;
+import java.awt.Point;
 
 /**
  *
@@ -15,13 +16,16 @@ public class ControladorGuiDustCart {
     
     private String title;
     private GuiDustCart guiDustCart;
-    private CargarMundo load;
+    private CargarMundo load=new CargarMundo();;
     
     public ControladorGuiDustCart(){
         guiDustCart = new GuiDustCart();
         guiDustCart.setControlador( this );
         title = "DustCart";
     }    
+    public Point getpInicio() {
+        return load.getpInicio();
+    }
     
     /**
       * Retorna el titulo o nombre de la gui
@@ -40,9 +44,16 @@ public class ControladorGuiDustCart {
      }
 
     public void cargarMundo() {
-        load = new CargarMundo();
+        
         load.seleccionarArchivo();
+        
     }
+    
+   public int[][] getMundo(){
+//        load = new CargarMundo();
+        int mundo[][]=load.getMundo();
+        return mundo;
+   }
     
     public void setImagenMundo(){
        guiDustCart.setImagenMundoGui( load.getMundo() ); 

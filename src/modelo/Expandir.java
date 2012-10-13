@@ -24,6 +24,13 @@ public abstract class Expandir {
     int profundidad=0;
     int costo=0;
     Estado estado;
+    
+    
+    public Expandir()
+    {
+        //contNodos=0;
+        listaNodos=new ArrayList<Nodo>();
+    }
     public ArrayList<Nodo> expandirNodo(Nodo nodo){
       
         EstadoActual estadoTemp=nodo.getEstado();
@@ -131,8 +138,6 @@ public abstract class Expandir {
     
     
     
-    public Expandir() {
-    }
     
     
 }

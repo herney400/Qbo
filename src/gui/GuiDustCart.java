@@ -302,17 +302,19 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
-    
-        
+//        CargarMundo cm=new CargarMundo();
+//        cm.seleccionarArchivo();
         controlador.cargarMundo();
         cargarImagenes();
         controlador.setImagenMundo();
-        CargarMundo cm=new CargarMundo();
+        int m[][]=controlador.getMundo();
+        Point p=controlador.getpInicio();
         
-        EstadoActual esta= new EstadoActual(cm.getMundo(), 0, 0, cm.getpInicio());
-        Robot Qbo=new Robot(cm.getMundo(), cm.getpInicio());
+      
+        EstadoActual esta= new EstadoActual(m, 0, 0, p);
+        Robot Qbo=new Robot(m, p);
         Nodo raiz= new Nodo("", esta, Qbo);
-        CrearBusqueda cb=new CrearBusqueda(raiz, cm.getpInicio(), cm.getMundo());
+        crearbusqueda=new CrearBusqueda(raiz, p, m);
         
     }//GEN-LAST:event_jButtonCargarActionPerformed
 

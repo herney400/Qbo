@@ -27,6 +27,7 @@ public class Amplitud extends Expandir{
 
     public Nodo ejecutar() {
         listaNodos.add(nodoRaiz);
+        
         while(!(listaNodos.isEmpty())){
              
              Nodo nodoActual=listaNodos.get(0);
