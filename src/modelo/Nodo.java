@@ -25,7 +25,8 @@ public class Nodo {
      int profundidad;
      int costoDelaRuta;
      String operadorAplicado;
-     
+     private int x;
+     private int y;
 
      
      public Nodo(  String camino, EstadoActual estadoactual, Robot Qbo){
@@ -33,19 +34,12 @@ public class Nodo {
        this.estado=estadoactual;
        this.ruta=camino;
        this.robot=Qbo;
+       this.x=x;
+       this.y=y;
      }
+  
      
-    /*constructor 2 elaborado para crear el nodo padre y a partir de el 
-      empezar el expandir 
-     */ 
-//    public Nodo(int mundo[][]) {
-//    
-//        estado.setAmbiente(mundo);
-//        estado.setCosto(peso);
-//        estado.setPesoBasura(pesoBasura);
-//        estado.setPosicionActual(inicializaPosicion(mundo));
-//        
-//    }
+   
     public boolean esMeta(){
       boolean meta=true;
       return meta;
@@ -131,5 +125,33 @@ public class Nodo {
      */
     public void setPadre(Nodo padre) {
         this.padre = padre;
+    }
+
+    /**
+     * @return the x
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * @param x the x to set
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * @return the y
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * @param y the y to set
+     */
+    public void setY(int y) {
+        this.y = y;
     }
 }

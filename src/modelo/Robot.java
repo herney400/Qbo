@@ -15,10 +15,11 @@ public class Robot {
   Point posicionActual;
   private boolean avanzar=false;
   String encontro="";
-  Sensor sensor;
+  Sensor sensor ;
     public Robot(int ambiente[][], Point posicionActual) {
         this.ambiente=ambiente;
         this.posicionActual=posicionActual;
+        sensor=new Sensor(posicionActual);
     }    
      
     /*Crear un robot 

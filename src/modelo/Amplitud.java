@@ -31,11 +31,15 @@ public class Amplitud extends Expandir{
         while(!(listaNodos.isEmpty())){
              
              Nodo nodoActual=listaNodos.get(0);
+               
              if(esMeta(nodoActual)){
+                 System.out.println("hasta aqui");
                  return nodoActual;
+                 
              }else{
+                 System.out.println("hasta aqui en  el else");
                 listaNodos.remove(0);
-                ArrayList<Nodo> hijos = expandirNodo(nodoRaiz);
+                ArrayList<Nodo> hijos = expandirNodo(nodoActual);
                 listaNodos.addAll(hijos);
              }
             
@@ -47,9 +51,12 @@ public class Amplitud extends Expandir{
     }
     public boolean esMeta(Nodo nodo){
     
+       if(nodo.getEstado().getBasuraAcumulada()==5){
+           return true; 
        
+       }
         
-        return true;
+        return false;
     }
     
     

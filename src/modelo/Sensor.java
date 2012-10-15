@@ -49,6 +49,7 @@ public class Sensor {
      */
     public int buscarArriba(Point posicion){
         valorEncontrado = mundo[ posicion.x - 1 ][ posicion.y ];
+        System.out.println(""+posicion);
         return valorEncontrado;
     }//buscarArriba
     
@@ -67,8 +68,8 @@ public class Sensor {
      * @param posicion Posicion en la que se halla el robot
      * @return data Dato encontrado por el sensor en la posicion abajo
      */
-    public int buscarAbajo(Point posicion){
-        valorEncontrado = mundo[ posicion.x + 1 ][ posicion.y ];
+    public int buscarAbajo(Point p){
+        valorEncontrado = mundo[p.x + 1 ][ p.y ];
         return valorEncontrado;
     }//buscarAbajo
     

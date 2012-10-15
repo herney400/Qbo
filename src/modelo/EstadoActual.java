@@ -18,6 +18,7 @@ public class EstadoActual {
       private int pesoBasura=0;
       private Estado estado;
       private Point posicionActual;
+      private int basuraAcumulada;
 //      private int 
       /*
        Esta clase me genera el estado que va a ser visto como actual 
@@ -34,11 +35,11 @@ public class EstadoActual {
              ambiente[i][j]=mundo[i][j];
               }
           }
-        this.costo=costo;
-        this.pesoBasura=pesoBasura;
-        this.posicionActual=posicionActual;
-        
-      }
+            this.costo=costo;
+            this.pesoBasura=pesoBasura;
+            this.posicionActual=posicionActual;
+
+          }
 
     /**
      * @return the ambiente
@@ -95,6 +96,21 @@ public class EstadoActual {
      */
     public void setPosicionActual(Point posicionActual) {
         this.posicionActual = posicionActual;
+    }
+
+    /**
+     * @return the basuraAcumulada
+     * 
+     */
+    public int getBasuraAcumulada() {
+        return basuraAcumulada;
+    }
+
+    /**
+     * @param basuraAcumulada the basuraAcumulada to set
+     */
+    public void setBasuraAcumulada(int basuraAcumulada) {
+        this.basuraAcumulada = basuraAcumulada;
     }
       
       
