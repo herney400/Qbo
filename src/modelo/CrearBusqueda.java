@@ -21,38 +21,28 @@ public class CrearBusqueda {
         pInicial=pinicial;
         mapa =new int[ambiente.length][ambiente.length];
         
-        if(ambiente!=null){
-        for(int idy=0;idy<10;idy++)
+        if(ambiente!=null)
+        {
+            for(int idy=0;idy<10;idy++)
             {
-                for(int idx=0;idx<10;idx++)
-                {
-                    this.mapa[idx][idy]=ambiente[idx][idy];
-                }
+                System.arraycopy(ambiente[idy], 0, this.mapa[idy], 0, 10);
             }
-        
-        }else{
-        
-        System.err.println("error");
+        }else
+        {
+            System.err.println("error");
         }
-    
     }
     
     
     public  Expandir iniciarnoInformada(String tipo){
     
-     Expandir expandir=null;
+        Expandir expandir=null;
         if(tipo.equals("Amplitud")){
-          expandir= new Amplitud(nodoRaiz.clone(),pInicial,mapa   );
-        
+            expandir= new Amplitud(nodoRaiz.clone(),pInicial,mapa);
         }else
         {
-        System.out.print("paila");
+            System.out.print("paila");
         }
-        
-     
-     
-     return expandir;
-    
-    }
-    
+        return expandir;
+    } 
 }

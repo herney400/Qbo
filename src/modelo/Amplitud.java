@@ -14,17 +14,14 @@ import java.util.ArrayList;
 public class Amplitud extends Expandir{
     private Nodo nodoRaiz;
     int mundo[][];
-//    private final Nodo raiznodo;
     
     public  Amplitud(Nodo raiz,Point p, int mundoOriginal[][]){
          super();
          this.mundo=mundoOriginal.clone();
-         this.nodoRaiz=raiz;
-         
+         this.nodoRaiz=raiz;    
     }
-    
-    
 
+    @Override
     public Nodo ejecutar() {
         listaNodos.add(nodoRaiz);
         
@@ -42,22 +39,15 @@ public class Amplitud extends Expandir{
                 ArrayList<Nodo> hijos = expandirNodo(nodoActual);
                 listaNodos.addAll(hijos);
              }
-            
-            
         }
-        
-        
         return null;
     }
+
     public boolean esMeta(Nodo nodo){
     
        if(nodo.getEstado().getBasuraAcumulada()==5){
            return true; 
-       
        }
-        
-        return false;
+       return false;
     }
-    
-    
 }

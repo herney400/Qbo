@@ -50,7 +50,6 @@ public class ControladorGuiDustCart {
     }
     
    public int[][] getMundo(){
-//        load = new CargarMundo();
         int mundo[][]=load.getMundo();
         return mundo;
    }
@@ -62,8 +61,5 @@ public class ControladorGuiDustCart {
     void seleccionarRobot(boolean isDustCart, boolean isR2D2) {
         guiDustCart.setIsDustCart(isDustCart);
         guiDustCart.setIsR2D2(isR2D2);
-    }
-     
-
-    
+    }   
 }

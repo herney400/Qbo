@@ -26,7 +26,7 @@ public class CargarMundo extends JFrame {
     private Point pReciclaje;
     private Point pDeposito2k;
     private Point pDeposito3k;
-    private int[][] mundo= new int[12][12];;
+    private int[][] mundo= new int[10][10];;
     private boolean mundoCargado;
     private int peso=0;
     private String inicio=" ";
@@ -40,8 +40,7 @@ public class CargarMundo extends JFrame {
         this.pInicio = new Point();
         this.pReciclaje = new Point();
         this.pDeposito2k = new Point();
-        this.pDeposito3k = new Point();
-        
+        this.pDeposito3k = new Point();      
         mundoCargado = false;
     }
     
@@ -83,43 +82,33 @@ public class CargarMundo extends JFrame {
         }
         
         //Leer el archivo y cargar la abstraccion del ambiente
-	for( int i = 0; i < 12; i++ ){
-            for(int j = 0; j < 12; j++ ){
-                if( i==0 || j==0 || i==11 || j==11){
-                    mundo[i][j]= -1;    //Se asigna -1 a los bordes para controlar a la hora de leer el ambiente
-                }//if
-                else{
-                    try{
-                        //Se cargan los datos del archivo a array que representa el ambiente
-                        mundo[i][j] = entrada.nextInt();
-                        
-                        //Se establecen puntos de referencia en el ambiente
-                        switch( mundo[i][j] ){
-                            case 2:
-                                pDeposito2k.setLocation( i, j );
-                                break;
-                            case 3:
-                                pDeposito3k.setLocation( i, j );
-                                break;
-                            case 4:
-                                pInicio.setLocation( i, j );
-                                break;
-                            case 5:
-                                pReciclaje.setLocation( i, j ); 
-                                break;
-                        }//switch
-                        
-                    }catch( Exception e ){}
-                }//else
+	for( int i = 0; i < 10; i++ ){
+            for(int j = 0; j < 10; j++ ){
+                try{
+                    //Se cargan los datos del archivo a array que representa el ambiente
+                    mundo[i][j] = entrada.nextInt();
+                    //Se establecen puntos de referencia en el ambiente
+                    switch( mundo[i][j] ){
+                        case 2:
+                            pDeposito2k.setLocation( j, i );
+                            break;
+                        case 3:
+                            pDeposito3k.setLocation( j, i );
+                            break;
+                        case 4:
+                            pInicio.setLocation( j, i );
+                            break;
+                        case 5:
+                            pReciclaje.setLocation( j, i );
+                            break;
+                    }//switch
+
+                }catch( Exception e ){}
                 System.out.print(mundo[i][j]+ " ");
             }//for
             System.out.print("\n");
             mundoCargado = true;
         }//for		
-        
-        
-//        expandir.expandirNodo(new Nodo(inicio, null, null));
-//        
     }//fin leerArchivo()
     
     /**
@@ -157,9 +146,5 @@ public class CargarMundo extends JFrame {
         System.out.println("Deposito 2k > "+pDeposito2k.toString() );
         System.out.println("Deposito 3k > "+pDeposito3k.toString() );
          
-    }
-    
-   
-    
-    
+    } 
 }

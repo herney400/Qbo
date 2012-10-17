@@ -13,33 +13,22 @@ import java.awt.Point;
 public class EstadoActual {
     
     
-      private int ambiente[][]= new int[12][12];
-      private int costo=0;
-      private int pesoBasura=0;
-      private Estado estado;
-      private Point posicionActual;
-      private int basuraAcumulada;
-//      private int 
-      /*
-       Esta clase me genera el estado que va a ser visto como actual 
-       a partir del nodo raiz..
+    private int ambiente[][]= new int[10][10];
+    private int costo=0;
+    private int pesoBasura=0;
+    private Estado estado;
+    private Point posicionActual;
+    private int basuraAcumulada;
        
-       */ 
-  
-       
-      public EstadoActual(int [][] mundo, int costo,int pesoBasura,  Point posicionActual){
-         
-          
-          for (int i = 0; i < mundo.length; i++) {
-              for (int j = 0; j < mundo.length; j++) {
-             ambiente[i][j]=mundo[i][j];
-              }
-          }
-            this.costo=costo;
-            this.pesoBasura=pesoBasura;
-            this.posicionActual=posicionActual;
+    public EstadoActual(int [][] mundo, int costo,int pesoBasura, Point posicionActual){
 
-          }
+        for (int i = 0; i < mundo.length; i++) {
+            System.arraycopy(mundo[i], 0, ambiente[i], 0, mundo.length);
+        }
+        this.costo=costo;
+        this.pesoBasura=pesoBasura;
+        this.posicionActual=posicionActual;
+    }
 
     /**
      * @return the ambiente
@@ -111,15 +100,5 @@ public class EstadoActual {
      */
     public void setBasuraAcumulada(int basuraAcumulada) {
         this.basuraAcumulada = basuraAcumulada;
-    }
-      
-      
-      
-    
-    
-    
-    
-    
-    
-    
+    }    
 }

@@ -302,20 +302,17 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
-//        CargarMundo cm=new CargarMundo();
-//        cm.seleccionarArchivo();
+
         controlador.cargarMundo();
         cargarImagenes();
         controlador.setImagenMundo();
         int m[][]=controlador.getMundo();
         Point p=controlador.getpInicio();
         
-      
         EstadoActual esta= new EstadoActual(m, 0, 0, p);
         Robot Qbo=new Robot(m, p);
         Nodo raiz= new Nodo("", esta, Qbo);
-        crearbusqueda=new CrearBusqueda(raiz, p, m);
-        
+        crearbusqueda=new CrearBusqueda(raiz, p, m);  
     }//GEN-LAST:event_jButtonCargarActionPerformed
 
     private void jButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjecutarActionPerformed
@@ -325,12 +322,8 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
         if(expandir!=null){
             long tiempoinicio=System.currentTimeMillis();
             Nodo respuesta=expandir.ejecutar();
-             long tiempo=System.currentTimeMillis()-tiempoinicio;
-
-        }
-        
-        
-        
+            long tiempo=System.currentTimeMillis()-tiempoinicio;
+        }  
     }//GEN-LAST:event_jButtonEjecutarActionPerformed
 
     private void jComboBoxTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoBusquedaActionPerformed
@@ -363,7 +356,7 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
     public void setImagenMundoGui(int [][]mundoTmp ){
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 10; j++){
-                mundo[i][j].setImagen( imagenes[ mundoTmp[i+1][j+1] ] );
+                mundo[i][j].setImagen( imagenes[ mundoTmp[i][j] ] );
             }//for j
         }//for i
         repaint();

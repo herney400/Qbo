@@ -16,7 +16,7 @@ public class Sensor {
     /** Representacion del mundo en el que opera el DustCart */
     private int[][] mundo;
     /** Valor encontrado en las celdas vecinas a la posición acutal del DustCart */
-    private int valorEncontrado;
+  int valorEncontrado;
     /** Representa un punto de coordenadas x e y que reflejan la posicion del robot en el mundo */
     private Point posicionActual;
     
@@ -25,7 +25,7 @@ public class Sensor {
      * @param posicionInicial La posicion en la que inicia el robot
      */
     public Sensor( Point posicionInicial ){
-        mundo = new int[12][12];
+        mundo = new int[10][10];
         posicionActual = new Point( posicionInicial );
     }//Sensor
     
@@ -47,8 +47,9 @@ public class Sensor {
      * @param posicion Posicion en la que se halla el robot
      * @return data Dato encontrado por el sensor en la posicion arriba
      */
-    public int buscarArriba(Point posicion){
-        valorEncontrado = mundo[ posicion.x - 1 ][ posicion.y ];
+    public int buscarArriba(Point posicion, Nodo n){
+         mundo=n.getEstado().getAmbiente().clone();
+         valorEncontrado = mundo[ posicion.y-1 ][ posicion.x ];
         System.out.println(""+posicion);
         return valorEncontrado;
     }//buscarArriba
@@ -58,8 +59,11 @@ public class Sensor {
      * @param posicion Posicion en la que se halla el robot
      * @return data Dato encontrado por el sensor en la posicion derecha
      */
-    public int buscarDerecha(Point posicion){
-        valorEncontrado = mundo[ posicion.x ][ posicion.y + 1 ];
+    public int buscarDerecha(Point posicion, Nodo n){
+       int  muundo[][]=n.getEstado().getAmbiente();
+      
+        valorEncontrado = muundo[ posicion.y ][ posicion.x+1 ];
+      
         return valorEncontrado;
     }//buscarDerecha
     
@@ -68,8 +72,9 @@ public class Sensor {
      * @param posicion Posicion en la que se halla el robot
      * @return data Dato encontrado por el sensor en la posicion abajo
      */
-    public int buscarAbajo(Point p){
-        valorEncontrado = mundo[p.x + 1 ][ p.y ];
+    public int buscarAbajo(Point p, Nodo n){
+        mundo=n.getEstado().getAmbiente().clone();
+        valorEncontrado = mundo[p.y+1][ p.x ];
         return valorEncontrado;
     }//buscarAbajo
     
@@ -78,8 +83,9 @@ public class Sensor {
      * @param posicion Posicion en la que se halla el robot
      * @return data Dato encontrado por el sensor en la posicion izquierda
      */
-    public int buscarIzquierda(Point posicion){
-        valorEncontrado = mundo[ posicion.x ][ posicion.y - 1 ];
+    public int buscarIzquierda(Point posicion, Nodo n){
+         mundo=n.getEstado().getAmbiente().clone();
+        valorEncontrado = mundo[ posicion.x - 1 ][ posicion.y ];
         return valorEncontrado;
     }//buscarIzquierda
             
@@ -89,8 +95,6 @@ public class Sensor {
                 System.out.print(mundo[i][j]+" ");
             }
             System.out.println();
-        }
-        
-    }
-        
+        }   
+    }       
 }

@@ -12,11 +12,10 @@ import java.awt.Point;
  */
 public class Nodo {
      int mundo[][];
-     
-   //  Point posicionActual;
+     //Point posicionActual;
      int peso;
      Robot robot; 
- //    int pesoBasura=0;
+     //int pesoBasura=0;
      private String ruta="";
      private int heuristica; 
      Expandir espan;
@@ -25,33 +24,24 @@ public class Nodo {
      int profundidad;
      int costoDelaRuta;
      String operadorAplicado;
-     private int x;
-     private int y;
-
      
-     public Nodo(  String camino, EstadoActual estadoactual, Robot Qbo){
-    
+    public Nodo(String camino, EstadoActual estadoactual, Robot Qbo){    
        this.estado=estadoactual;
        this.ruta=camino;
        this.robot=Qbo;
-       this.x=x;
-       this.y=y;
-     }
-  
+    }
      
-   
     public boolean esMeta(){
       boolean meta=true;
       return meta;
     }
-    
-    
+        
     public Point inicializaPosicion(int mundo[][]){
        Point posicionInicial = null;
         for (int i = 0; i < mundo.length; i++) {
             for (int j = 0; j < mundo.length; j++) {
                  if(mundo[i][j]==5){
-                    posicionInicial.setLocation(i, j);
+                    posicionInicial.setLocation(j, i);
                  }
             }
         }
@@ -61,7 +51,6 @@ public class Nodo {
     public int getHeuristica() {
         return heuristica;
     }
-
 
     public void setMundo(int[][] mundo) {
         this.mundo = mundo;
@@ -93,8 +82,8 @@ public class Nodo {
         this.estado = estado;
     }
      
-     public Nodo clone()
-    {
+    @Override
+    public Nodo clone(){
         Nodo nodo=new Nodo(  ruta, estado, robot);
         return nodo;
     }
@@ -125,33 +114,5 @@ public class Nodo {
      */
     public void setPadre(Nodo padre) {
         this.padre = padre;
-    }
-
-    /**
-     * @return the x
-     */
-    public int getX() {
-        return x;
-    }
-
-    /**
-     * @param x the x to set
-     */
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    /**
-     * @return the y
-     */
-    public int getY() {
-        return y;
-    }
-
-    /**
-     * @param y the y to set
-     */
-    public void setY(int y) {
-        this.y = y;
     }
 }
