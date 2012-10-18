@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public abstract class Expandir {
     
     protected ArrayList<Nodo> listaNodos; 
+    
+    protected  ArrayList<Nodo> nodosBorrados;
     protected Nodo padre;
     Cola arbol=new Cola();
     CargarMundo cMundo;
@@ -31,6 +33,8 @@ public abstract class Expandir {
     {
         //contNodos=0;
         listaNodos=new ArrayList<Nodo>();
+        nodosBorrados=new ArrayList<Nodo>();
+        
     }
     
     public ArrayList<Nodo> expandirNodo(Nodo nodo){
@@ -70,8 +74,7 @@ public abstract class Expandir {
         }
         if((nodotemporal.getEstado().getPosicionActual().y)<9){
              
-//            int sepasoununo=nodotemporal.robot.sensor.buscarAbajo(nodotemporal.getEstado().getPosicionActual(),nodotemporal);
-             
+        
             if((nodotemporal.robot.sensor.buscarAbajo(nodotemporal.getEstado().getPosicionActual(),nodotemporal)!=1)){
                 
             if( ((nodotemporal.robot.sensor.buscarAbajo(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==0)||
@@ -172,12 +175,12 @@ public abstract class Expandir {
     
     public boolean  evitarDevolverse(Nodo n){
       boolean devolverse = true;
-       Point para=padre.getEstado().getPosicionActual();
-       Point punt=n.getEstado().getPosicionActual();
+//       Point para=padre.getEstado().getPosicionActual();
+//       Point punt=n.getEstado().getPosicionActual();
         for(int i=0;i<listaNodos.size();i++){
         
-            if((n.getEstado().getPosicionActual()==listaNodos.get(i).getEstado().getPosicionActual())
-               || (padre.getEstado().getPosicionActual().equals( n.getEstado().getPosicionActual()))){
+            if((n.getEstado().getPosicionActual().equals(nodosBorrados.get(i).getEstado().getPosicionActual()))
+               || (n.getEstado().getPosicionActual().equals(listaNodos.get(i).getEstado().getPosicionActual()))){
                 
               devolverse=false;
             }else {

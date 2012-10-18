@@ -24,11 +24,12 @@ public class Amplitud extends Expandir{
     @Override
     public Nodo ejecutar() {
         listaNodos.add(nodoRaiz);
-        padre=nodoRaiz;
+//        padre=nodoRaiz;
         while(!(listaNodos.isEmpty())){
              
              Nodo nodoActual=listaNodos.get(0);
-               
+             nodosBorrados.add(nodoActual);  
+             int tam=nodosBorrados.size();
              if(esMeta(nodoActual)){
                  System.out.println("hasta aqui");
                  return nodoActual;
