@@ -16,7 +16,8 @@ import java.util.ArrayList;
  */
 public abstract class Expandir {
     
-    protected ArrayList<Nodo> listaNodos;   
+    protected ArrayList<Nodo> listaNodos; 
+    protected Nodo padre;
     Cola arbol=new Cola();
     CargarMundo cMundo;
     int peso=0;
@@ -24,7 +25,7 @@ public abstract class Expandir {
     int profundidad=0;
     int costo=0;
     Estado estado;
-    
+//    Nodo padre=listaNodos.get(0);
     
     public Expandir()
     {
@@ -42,7 +43,8 @@ public abstract class Expandir {
          
         if((nodotemporal.getEstado().getPosicionActual().x)<9)
         {
-            Point puntoParaver=nodotemporal.getEstado().getPosicionActual();
+            
+           
             if((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal)!=1)){
                 
                 if(((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==0)||
@@ -54,9 +56,12 @@ public abstract class Expandir {
                         crearCamino(camino, nodotemporal);
                         Estado estadoT=new Estado();
                         hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),3), Qbo);
-                        if(hijo!=null){
-                        hijos.add(hijo);
-                    }
+                        
+                        if((evitarDevolverse(hijo))&&(hijo!=null))
+                        {
+                            hijos.add(hijo);
+                        }   
+                       
                 }
 
             }
@@ -78,9 +83,10 @@ public abstract class Expandir {
                 crearCamino(camino, nodotemporal);
                 Estado estadoT=new Estado();
                 hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),1), Qbo);
-                if(hijo!=null){
-                hijos.add(hijo);
-                }
+                if((evitarDevolverse(hijo))&&(hijo!=null))
+                        {
+                            hijos.add(hijo);
+                        }
             }
           } 
         }
@@ -99,9 +105,11 @@ public abstract class Expandir {
                     crearCamino(camino, nodotemporal);
                     Estado estadoT=new Estado();
                     hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),4), Qbo);
-                    if(hijo!=null){
-                    hijos.add(hijo);
-                    }
+                     
+                    if((evitarDevolverse(hijo))&&(hijo!=null))
+                        {
+                          hijos.add(hijo);
+                        }
                 }
             } 
         }
@@ -119,127 +127,18 @@ public abstract class Expandir {
                 crearCamino(camino, nodotemporal);
                 Estado estadoT=new Estado();
                 hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),2), Qbo);
-                if(hijo!=null){
-                hijos.add(hijo);
-                }
+              
+                if((evitarDevolverse(hijo))&&(hijo!=null))
+                    {
+                       hijos.add(hijo);
+                    }
             }
           }  
         }
         return hijos;   
     }
     
-    public EstadoActual  siguientEstado( EstadoActual estadoUpdate, Point p, int movimiento){
-    
-      int matris[][]=estadoUpdate.getAmbiente();
-        int costo=estadoUpdate.getCosto();
-        int pesoBasura=estadoUpdate.getPesoBasura();
-        
-        Point posicionNueva = new Point();
-        int x=p.x;
-        int y=p.y;
-        
-        
-        int basurAcumulada=estadoUpdate.getBasuraAcumulada();
-        switch(movimiento){ //buscando abajo
-            case 1:
-                if((matris[p.x+1][p.y]==2)||(matris[p.x+1][p.y]==3)||(matris[p.x+1][p.y]==5)||(matris[p.x+1][p.y])==0){
-                   
-                    if((matris[p.x+1][p.y]==2)){
-                        pesoBasura=pesoBasura+2;
-                        costo=costo+2;
-                    }else if(matris[p.x+1][p.y]==3){
-                        pesoBasura=pesoBasura+3;
-                        costo=costo+3; 
-                    }else if(matris[p.x+1][p.y]==5){
-                           basurAcumulada=basurAcumulada+pesoBasura;
-                           pesoBasura=0;          
-                    }
-                 } 
-//                    matris[p.x][p.y]=0;
-//                    matris[p.x+1][p.y]=4;
-                    
-                    costo++;
-                    posicionNueva.x=p.x+1;
-                    posicionNueva.y=p.y;   
-//                    System.out.println("poscion nueva para abajos"+posicionNueva+"  "+matris[posicionNueva.x][posicionNueva.y]);
-                    break;
-            case 2:  //buscando arriba
-                if((matris[p.x-1][p.y]==2)||(matris[p.x-1][p.y]==3)||(matris[p.x-1][p.y]==5)||(matris[p.x-1][p.y])==0){
-                    if((matris[p.x-1][p.y]==2)){
-                        pesoBasura=pesoBasura+2;
-                         costo=costo+2;
-                    }if(matris[p.x-1][p.y]==3){
-                        pesoBasura=pesoBasura+3;
-                        costo=costo+3;
-                    }if(matris[p.x-1][p.y]==5){
-                       basurAcumulada=basurAcumulada+pesoBasura;
-                        pesoBasura=0;
-                    }
-                } 
-                  matris[p.x][p.y]=0;
-                  matris[p.x-1][p.y]=4;
-                
-//                  posicionNueva.x=p.x-1;
-//                  posicionNueva.y=p.y;
-                  System.out.println("poscion nueva para arriba"+posicionNueva);
-                   break;
-            case 3://buscando a la derecha, se inicializa la nueva posicion 
-                if((matris[p.x][p.y+1]==2)||(matris[p.x][p.y+1]==3)||(matris[p.x][p.y+1]==5)||(matris[p.x][p.y+1])==0 ){
-                    if(matris[p.x][p.y+1]==2){
-                        
-                      pesoBasura=pesoBasura+2;
-                      costo=costo+2;
-                    }else if(matris[p.x][p.y+1]==3){
-                      pesoBasura=pesoBasura+3;
-                      costo=costo+3;
-                    }else if(matris[p.x][p.y+1]==5){
-                      basurAcumulada=basurAcumulada+pesoBasura;  
-                     pesoBasura=0;
-                    }                    
-                      }
-//                   matris[p.x][p.y]=0;    
-//                   matris[p.x][p.y+1]=4;
-                    
-                    posicionNueva.x=p.x;
-                    posicionNueva.y=p.y+1;
-                     System.out.println("poscion nueva para derecxha"+posicionNueva);
-                  break;
-                
-            case 4: //buscando a la izquierda,  y se inicializa la nueva posicion y estado.
-                if((matris[p.x][p.y-1]==2)||(matris[p.x][p.y-1]==3)||(matris[p.x][p.y-1]==5)||(matris[p.x][p.y-1])==0){
-                
-                  if(matris[p.x][p.y-1]==2){
-                  
-                    pesoBasura=pesoBasura+2;
-                    costo=costo+2;
-                  }else if(matris[p.x][p.y-1]==3){
-                      pesoBasura=pesoBasura+3;
-                      costo=costo+3;
-                  }else if(matris[p.x][p.y-1]==5){
-                      basurAcumulada=basurAcumulada+pesoBasura;
-                      pesoBasura=0;
-                  }else if((matris[p.x][p.y-1])==0){
-                  
-                  }
-            
-                 }
-//                 matris[p.x][p.y]=0;
-//                matris[p.x][p.y-1]=4;
-               
-               posicionNueva.x=p.x;
-                posicionNueva.y=p.y-1;
-                 System.out.println("poscion nueva para izquierda"+posicionNueva);
-                break;
-                
-        }
-        
-      
-        
-            EstadoActual es= new EstadoActual(matris, costo, pesoBasura, posicionNueva);
-            return es ;
-        
-    
-    }
+  
     
     public String crearCamino(String operador,Nodo nodo){
      //Ruta que guardara la ruta del padre y al padre
@@ -270,6 +169,25 @@ public abstract class Expandir {
         }
     return operador;
     }
+    
+    public boolean  evitarDevolverse(Nodo n){
+      boolean devolverse = true;
+       Point para=padre.getEstado().getPosicionActual();
+       Point punt=n.getEstado().getPosicionActual();
+        for(int i=0;i<listaNodos.size();i++){
+        
+            if((n.getEstado().getPosicionActual()==listaNodos.get(i).getEstado().getPosicionActual())
+               || (padre.getEstado().getPosicionActual().equals( n.getEstado().getPosicionActual()))){
+                
+              devolverse=false;
+            }else {
+             devolverse=true;
+            }
+            
+        }
+        return devolverse;
+    }
+    
     
     public abstract Nodo ejecutar ();
 }
