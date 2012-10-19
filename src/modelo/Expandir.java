@@ -181,8 +181,8 @@ public abstract class Expandir {
         
             if((n.getEstado().getPosicionActual().equals(nodosBorrados.get(i).getEstado().getPosicionActual()))
                || (n.getEstado().getPosicionActual().equals(listaNodos.get(i).getEstado().getPosicionActual()))){
-                
               devolverse=false;
+              i=listaNodos.size();
             }else {
              devolverse=true;
             }

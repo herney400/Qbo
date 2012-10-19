@@ -50,10 +50,10 @@ public class Estado {
                  }  
 //                    matris[p.x][p.y]=0;
 //                    matris[p.x][p.y+1]=4;
-                    
+                   
                     costo++;
-                    posicionNueva.x=p.y+1;
-                    posicionNueva.y=p.x;
+                    posicionNueva.x=p.x;
+                    posicionNueva.y=p.y+1;
                     System.out.println("posicion nueva para abajo: "+posicionNueva+"  "+matris[posicionNueva.x][posicionNueva.y]);
                     break;
             case 2:  //buscando arriba
@@ -101,6 +101,7 @@ public class Estado {
                 
                     posicionNueva.x=p.x+1;
                     posicionNueva.y=p.y;
+                    
                     System.out.println("posicion nueva para derecha: "+posicionNueva+"  "+matris[posicionNueva.x][posicionNueva.y]);
                   break;
                 
