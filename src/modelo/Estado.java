@@ -30,36 +30,41 @@ public class Estado {
         switch(movimiento)
         { //buscando abajo
             case 1:
-                if((matris[p.x][p.y+1]==2)||(matris[p.x][p.y+1]==3)||(matris[p.x][p.y+1]==5)){
+               
+                      if((matris[p.y+1][ p.x ]==2)||(matris[p.y+1][ p.x ]==3)||(matris[p.y+1][ p.x ]==5)){
                    
-                    if((matris[p.x][p.y+1]==2)){
-                        pesoBasura=pesoBasura+2;
+                    if((matris[p.y+1][ p.x ]==2)){
+                        matris[p.y+1][ p.x ]=0;
+                        pesoBasura=pesoBasura+2;                        
                         costo=costo+2;
-                    }else if(matris[p.x][p.y+1]==3){
+                        
+                    }else if(matris[p.y+1][ p.x ]==3){
+                        matris[p.y+1][ p.x ]=0;
                         pesoBasura=pesoBasura+3;
                         costo=costo+3; 
-                    }else if(matris[p.x][p.y+1]==5){
-                           basurAcumulada=basurAcumulada+pesoBasura;
-                           pesoBasura=0;          
+                        
+                    }else if(matris[p.y+1][ p.x ]==5){
+                        basurAcumulada=basurAcumulada+pesoBasura;
+                        pesoBasura=0;          
                     }
                  }  
 //                    matris[p.x][p.y]=0;
 //                    matris[p.x][p.y+1]=4;
                     
                     costo++;
-                    posicionNueva.x=p.x;
-                    posicionNueva.y=p.y+1;
+                    posicionNueva.x=p.y+1;
+                    posicionNueva.y=p.x;
                     System.out.println("posicion nueva para abajo: "+posicionNueva+"  "+matris[posicionNueva.x][posicionNueva.y]);
                     break;
             case 2:  //buscando arriba
-                if((matris[p.x][p.y-1]==2)||(matris[p.x][p.y-1]==3)||(matris[p.x][p.y-1]==5)){
-                    if((matris[p.x][p.y-1]==2)){
+                  if((matris[ p.y-1 ][ p.x ]==2)||(matris[ p.y-1 ][ p.x ]==3)||(matris[ p.y-1 ][ p.x ]==5)){
+                    if(matris[ p.y-1 ][ p.x ]==2){
                         pesoBasura=pesoBasura+2;
                          costo=costo+2;
-                    }if(matris[p.x][p.y-1]==3){
+                    }if(matris[ p.y-1 ][ p.x ]==3){
                         pesoBasura=pesoBasura+3;
                         costo=costo+3;
-                    }if(matris[p.x][p.y-1]==5){
+                    }if(matris[ p.y-1 ][ p.x ]==5){
                        basurAcumulada=basurAcumulada+pesoBasura;
                         pesoBasura=0;
                     }
@@ -72,29 +77,36 @@ public class Estado {
                   System.out.println("posicion nueva para arriba: "+posicionNueva+"  "+matris[posicionNueva.x][posicionNueva.y]);
                    break;
             case 3://buscando a la derecha, se inicializa la nueva posicion 
-                if((matris[p.x+1][p.y]==2)||(matris[p.x+1][p.y]==3)||(matris[p.x+1][p.y]==5) ){
+                   
+                if((matris[p.y][p.x+1]==2)||(matris[p.y][p.x+1]==3)||(matris[p.y][p.x+1]==5) ){
                     if(matris[p.x+1][p.y]==2){
                         
                       pesoBasura=pesoBasura+2;
                       costo=costo+2;
-                    }else if(matris[p.x+1][p.y]==3){
+                    } if(matris[p.y][p.x+1]==3){
                       pesoBasura=pesoBasura+3;
+                      matris[p.y][p.x+1]=0;
+                      
                       costo=costo+3;
-                    }else if(matris[p.x+1][p.y]==5){
-                      basurAcumulada=basurAcumulada+pesoBasura;  
-                     pesoBasura=0;
+                    } if(matris[p.y][p.x+1]==5){
+                   
+                        basurAcumulada=basurAcumulada+pesoBasura;  
+                        pesoBasura=0;
                     }                    
                       }
 //                   matris[p.x][p.y]=0;    
 //                   matris[p.x+1][p.y]=4;
                     
+                   
+                
                     posicionNueva.x=p.x+1;
                     posicionNueva.y=p.y;
                     System.out.println("posicion nueva para derecha: "+posicionNueva+"  "+matris[posicionNueva.x][posicionNueva.y]);
                   break;
                 
             case 4: //buscando a la izquierda,  y se inicializa la nueva posicion y estado.
-                if((matris[p.x-1][p.y]==2)||(matris[p.x-1][p.y]==3)||(matris[p.x-1][p.y]==5)){
+              
+                if((matris[ p.x - 1 ][ p.y ]==2)||(matris[ p.x - 1 ][ p.y ]==3)||(matris[ p.x - 1 ][ p.y ]==5)){
                 
                   if(matris[p.x-1][p.y]==2){
                   
@@ -105,7 +117,7 @@ public class Estado {
                     costo=costo+3;
                   }else if(matris[p.x-1][p.y]==5){
                       basurAcumulada=basurAcumulada+pesoBasura;
-                    pesoBasura=0;
+                      pesoBasura=0;
                   }
             
                  }
@@ -115,7 +127,7 @@ public class Estado {
                 posicionNueva.x=p.x-1;
                 posicionNueva.y=p.y;
                 System.out.println("posicion nueva para izquierda: "+posicionNueva+"  "+matris[posicionNueva.x][posicionNueva.y]);
-                break;        
+                break;       
         }
 
         EstadoActual es= new EstadoActual(matris, costo, pesoBasura, posicionNueva);
