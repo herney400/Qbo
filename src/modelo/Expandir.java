@@ -45,8 +45,7 @@ public abstract class Expandir {
         Nodo nodotemporal=nodo;
         ArrayList <Nodo> hijos=new ArrayList<Nodo>();
          
-        if((nodotemporal.getEstado().getPosicionActual().x)<9)
-        {
+        if((nodotemporal.getEstado().getPosicionActual().x)<9){
             
            
             if((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal)!=1)){
@@ -55,23 +54,27 @@ public abstract class Expandir {
                    ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==5)||
                    ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==2)||
                    ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==3)){
+                       
+                     
                         String  camino="→";
                         profundidad++;
                         crearCamino(camino, nodotemporal);
                         Estado estadoT=new Estado();
-                        hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),3), Qbo);
+                        
+                        hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),3), Qbo, nodotemporal);                        
+                        
+                        if(hijo.getEstado().getBasuraAcumulada()!=0){
+                           nodosBorrados.clear();
+                        }
                         
                         if((evitarDevolverse(hijo))&&(hijo!=null))
-                        {
+                         {
                             hijos.add(hijo);
-                        }   
-                       
-                }
-
-            }
-            
-            
+                         }
+                  } 
+             }
         }
+        
         if((nodotemporal.getEstado().getPosicionActual().y)<9){
              
         
@@ -85,7 +88,12 @@ public abstract class Expandir {
                 profundidad++;
                 crearCamino(camino, nodotemporal);
                 Estado estadoT=new Estado();
-                hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),1), Qbo);
+                hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),1), Qbo, nodotemporal);
+                 
+                 if(hijo.getEstado().getBasuraAcumulada()!=0){
+                   nodosBorrados.clear();
+                 }
+                
                 if((evitarDevolverse(hijo))&&(hijo!=null))
                         {
                             hijos.add(hijo);
@@ -107,8 +115,11 @@ public abstract class Expandir {
                     profundidad++;
                     crearCamino(camino, nodotemporal);
                     Estado estadoT=new Estado();
-                    hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),4), Qbo);
-                     
+                    hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),4), Qbo,nodotemporal);
+                    if(hijo.getEstado().getBasuraAcumulada()!=0){
+                      nodosBorrados.clear();
+                    } 
+                    
                     if((evitarDevolverse(hijo))&&(hijo!=null))
                         {
                           hijos.add(hijo);
@@ -129,8 +140,11 @@ public abstract class Expandir {
                 profundidad++;
                 crearCamino(camino, nodotemporal);
                 Estado estadoT=new Estado();
-                hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),2), Qbo);
-              
+                hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),2), Qbo,nodotemporal);
+                  
+                  if(hijo.getEstado().getBasuraAcumulada()!=0){
+                    nodosBorrados.clear();
+                  }
                 if((evitarDevolverse(hijo))&&(hijo!=null))
                     {
                        hijos.add(hijo);

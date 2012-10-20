@@ -311,7 +311,7 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
         
         EstadoActual esta= new EstadoActual(m, 0, 0, p);
         Robot Qbo=new Robot(m, p);
-        Nodo raiz= new Nodo("", esta, Qbo);
+        Nodo raiz= new Nodo("", esta, Qbo, null);
         crearbusqueda=new CrearBusqueda(raiz, p, m);  
     }//GEN-LAST:event_jButtonCargarActionPerformed
 

@@ -25,10 +25,11 @@ public class Nodo {
      int costoDelaRuta;
      String operadorAplicado;
      
-    public Nodo(String camino, EstadoActual estadoactual, Robot Qbo){    
+    public Nodo(String camino, EstadoActual estadoactual, Robot Qbo, Nodo nodo){    
        this.estado=estadoactual;
        this.ruta=camino;
        this.robot=Qbo;
+       this.padre=nodo;
     }
      
     public boolean esMeta(){
@@ -84,7 +85,7 @@ public class Nodo {
      
     @Override
     public Nodo clone(){
-        Nodo nodo=new Nodo(  ruta, estado, robot);
+        Nodo nodo=new Nodo(  ruta, estado, robot, padre);
         return nodo;
     }
 

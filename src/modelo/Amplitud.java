@@ -43,7 +43,7 @@ public class Amplitud extends Expandir{
         }
         return null;
     }
-
+    
     public boolean esMeta(Nodo nodo){
     
        if(nodo.getEstado().getBasuraAcumulada()==5){

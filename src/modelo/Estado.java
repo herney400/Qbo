@@ -10,7 +10,7 @@ import java.awt.Point;
  *
  * @author fidelhpc
  */
-public class Estado {
+ public  class Estado {
     
      
     public Estado(){
@@ -77,14 +77,16 @@ public class Estado {
                   System.out.println("posicion nueva para arriba: "+posicionNueva+"  "+matris[posicionNueva.x][posicionNueva.y]);
                    break;
             case 3://buscando a la derecha, se inicializa la nueva posicion 
-                   
+                   int encontreEsto=matris[p.y][p.x+1];
                 if((matris[p.y][p.x+1]==2)||(matris[p.y][p.x+1]==3)||(matris[p.y][p.x+1]==5) ){
-                    if(matris[p.x+1][p.y]==2){
+                     
+                    if(matris[p.y][p.x+1]==2){
                         
                       pesoBasura=pesoBasura+2;
+                      basurAcumulada=basurAcumulada+2;
                       costo=costo+2;
                     } if(matris[p.y][p.x+1]==3){
-                      pesoBasura=pesoBasura+3;
+                      pesoBasura=pesoBasura+3;                      
                       matris[p.y][p.x+1]=0;
                       
                       costo=costo+3;
