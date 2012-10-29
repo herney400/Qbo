@@ -8,6 +8,7 @@ import dao.CargarMundo;
 import estructuras.Cola;
 import java.awt.Point;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 //import java.awt.geom.Point2D;
 
 /**
@@ -27,6 +28,8 @@ public abstract class Expandir {
     int profundidad=0;
     int costo=0;
     Estado estado;
+    
+    protected int [][] mapa;
 //    Nodo padre=listaNodos.get(0);
     
     public Expandir()
@@ -43,115 +46,144 @@ public abstract class Expandir {
         Nodo hijo=null;
         Robot Qbo=nodo.getRobot();  
         Nodo nodotemporal=nodo;
+        int pro=nodo.getProfundidad()+1;
+        
         ArrayList <Nodo> hijos=new ArrayList<Nodo>();
          
         if((nodotemporal.getEstado().getPosicionActual().x)<9){
             
-           
             if((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal)!=1)){
-                
-                if(((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==0)||
-                   ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==5)||
-                   ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==2)||
-                   ((nodotemporal.robot.sensor.buscarDerecha(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==3)){
-                       
-                     
-                        String  camino="→";
-                        profundidad++;
+   
+                        String  camino="der";
+                       // profundidad++;
                         crearCamino(camino, nodotemporal);
                         Estado estadoT=new Estado();
+                       
+                        hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),3), Qbo, nodotemporal,pro);                        
+                       
+                     if(hijo.getPadre().getPadre()!=null){  
                         
-                        hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),3), Qbo, nodotemporal);                        
-                        
-                        if(hijo.getEstado().getBasuraAcumulada()!=0){
-                           nodosBorrados.clear();
-                        }
-                        
-                        if((evitarDevolverse(hijo))&&(hijo!=null))
-                         {
-                            hijos.add(hijo);
-                         }
-                  } 
+                        if((hijo.getPadre().getPadre().getEstado().getPosicionActual().equals( hijo.getEstado().getPosicionActual()))){
+                            
+                               if(hijo.getRuta().equals(hijo.getPadre().getPadre().getRuta())){
+                                
+                                ///nada
+                               }else{
+                                   hijos.add(hijo);
+                               
+                               } 
+                            }else{
+                              hijos.add(hijo);
+                            }
+                      }else{
+                        hijos.add(hijo);
+                      
+                      }                 
              }
         }
         
         if((nodotemporal.getEstado().getPosicionActual().y)<9){
              
         
-            if((nodotemporal.robot.sensor.buscarAbajo(nodotemporal.getEstado().getPosicionActual(),nodotemporal)!=1)){
-                
-            if( ((nodotemporal.robot.sensor.buscarAbajo(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==0)||
-            ((nodotemporal.robot.sensor.buscarAbajo(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==2)||
-            ((nodotemporal.robot.sensor.buscarAbajo(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==5)||
-            ((nodotemporal.robot.sensor.buscarAbajo(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==3)){
-                String  camino="↓";
-                profundidad++;
+            if((nodotemporal.robot.sensor.buscarAbajo(nodotemporal.getEstado().getPosicionActual(),nodotemporal)!=1)){             
+                String  camino="aba";
+               // profundidad++;
                 crearCamino(camino, nodotemporal);
                 Estado estadoT=new Estado();
-                hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),1), Qbo, nodotemporal);
-                 
-                 if(hijo.getEstado().getBasuraAcumulada()!=0){
-                   nodosBorrados.clear();
-                 }
+              
+                hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),1), Qbo, nodotemporal, pro);
                 
-                if((evitarDevolverse(hijo))&&(hijo!=null))
-                        {
-                            hijos.add(hijo);
-                        }
-            }
-          } 
+                if(hijo.getPadre().getPadre()!=null){  
+                        
+                        if((hijo.getPadre().getPadre().getEstado().getPosicionActual().equals( hijo.getEstado().getPosicionActual()))){
+                            
+                               if(hijo.getRuta().equals(hijo.getPadre().getPadre().getRuta())){
+                                
+                                ///nada
+                               }else{
+                                   hijos.add(hijo);
+                               
+                               } 
+                            }else {
+                              hijos.add(hijo);
+                            }
+                      }else{
+                        hijos.add(hijo);
+                      
+                      }
+                      
+            } 
         }
         
         
         if((nodotemporal.getEstado().getPosicionActual().x)!=0)
         {
             if((nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.getEstado().getPosicionActual(),nodotemporal)!=1)){
-                
-                if((nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.getEstado().getPosicionActual(),nodotemporal)==0)||
-                (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.getEstado().getPosicionActual(),nodotemporal)==2)||
-                (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.getEstado().getPosicionActual(),nodotemporal)==3)||
-                (nodotemporal.robot.sensor.buscarIzquierda(nodotemporal.getEstado().getPosicionActual(),nodotemporal)==5)){
-                    String   camino="←";
-                    profundidad++;
+   
+                    String   camino="izq";
+                   // profundidad++;
                     crearCamino(camino, nodotemporal);
                     Estado estadoT=new Estado();
-                    hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),4), Qbo,nodotemporal);
-                    if(hijo.getEstado().getBasuraAcumulada()!=0){
-                      nodosBorrados.clear();
-                    } 
-                    
-                    if((evitarDevolverse(hijo))&&(hijo!=null))
-                        {
-                          hijos.add(hijo);
-                        }
-                }
+                   
+                    hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),4), Qbo,nodotemporal, pro);
+                
+                  
+                 
+                      if(hijo.getPadre().getPadre()!=null){  
+                        
+                        if((hijo.getPadre().getPadre().getEstado().getPosicionActual().equals( hijo.getEstado().getPosicionActual()))){
+                            
+                               if(hijo.getRuta().equals(hijo.getPadre().getPadre().getRuta())){
+                                
+                                ///nada
+                               }else{
+                                   hijos.add(hijo);
+                               
+                               } 
+                            }else{
+                              hijos.add(hijo);
+                            }
+                      }else{
+                        hijos.add(hijo);
+                      
+                      }
             } 
         }
         
         if((nodotemporal.getEstado().getPosicionActual().y)!=0)
         {
           if((nodotemporal.robot.sensor.buscarArriba(nodotemporal.getEstado().getPosicionActual(),nodotemporal)!=1)){
-              
-             if(((nodotemporal.robot.sensor.buscarArriba(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==0)||
-                ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==3)||
-                ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==5)||
-                ((nodotemporal.robot.sensor.buscarArriba(nodotemporal.getEstado().getPosicionActual(),nodotemporal))==2)){
-                String camino="↑";
-                profundidad++;
+     
+                String camino="arr";
+               // profundidad++;
                 crearCamino(camino, nodotemporal);
                 Estado estadoT=new Estado();
-                hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),2), Qbo,nodotemporal);
-                  
-                  if(hijo.getEstado().getBasuraAcumulada()!=0){
-                    nodosBorrados.clear();
-                  }
-                if((evitarDevolverse(hijo))&&(hijo!=null))
-                    {
-                       hijos.add(hijo);
-                    }
-            }
+         
+                hijo = new Nodo(camino, estadoT.siguienteEstado(estadoTemp, nodotemporal.getEstado().getPosicionActual(),2), Qbo,nodotemporal, pro);
+                
+                
+                  if(hijo.getPadre().getPadre()!=null){  
+                        
+                        if((hijo.getPadre().getPadre().getEstado().getPosicionActual().equals( hijo.getEstado().getPosicionActual()))){
+                            
+                               if(hijo.getRuta().equals(hijo.getPadre().getPadre().getRuta())){
+                                
+                                ///nada
+                               }else{
+                                   hijos.add(hijo);
+                               
+                               } 
+                            }else{
+                              hijos.add(hijo);
+                            }
+                      }else{
+                        hijos.add(hijo);
+                      
+                      }
+
           }  
         }
+        profundidad++;
         return hijos;   
     }
     
@@ -204,6 +236,77 @@ public abstract class Expandir {
         }
         return devolverse;
     }
+    
+    public double AplicarHeristica(Nodo nodo){
+    
+        
+     int matriz[][]=nodo.getEstado().getAmbiente().clone();
+     Point posicionActual=nodo.getEstado().getPosicionActual();
+     double distanciaA3k=0.0, distanciaA2k=0.0, distanciaP=0.0, distancia3kP=0.0;
+     Point dosk = new  Point();
+     Point tresk = new  Point();
+     Point Pr = new  Point();
+     double h3k=0.0, h2k=0.0;
+     
+     //Funcion para ubicar los costos
+     for(int i=0;i<10;i++){
+       for(int j=0;j<10;j++){
+         if(matriz[i][j]==2){
+           dosk.x=i;
+           dosk.y=j;
+         }if(matriz[i][j]==3){
+           tresk.x=i;
+           tresk.y=j;
+         }if(matriz[i][j]==5){
+           Pr.x=i;
+           Pr.y=j;
+         
+         } 
+     
+       }
+     }
+         
+                  distanciaA2k=Math.abs(posicionActual.y-dosk.x)+Math.abs(posicionActual.x-dosk.y);            
+                  distanciaA3k=Math.abs(posicionActual.x-tresk.y)+Math.abs(posicionActual.y-tresk.x);
+                  
+                  distanciaP=Math.abs(dosk.y-Pr.y)+Math.abs(dosk.x-Pr.x);
+                  distancia3kP=Math.abs(tresk.y-Pr.y)+Math.abs(tresk.x-Pr.x);     
+                  
+                  h3k=distancia3kP+distanciaA3k; 
+                  h2k=distanciaA2k+distanciaP; 
+    if(h2k>h3k ){
+    return h3k;    
+    }else{
+    return h2k;
+    }              
+                  
+                  
+                   
+    
+    }
+    
+    public double hnueva(Nodo n){
+            double h1=0.0;
+            double hfin=0;
+            Point p = n.getEstado().getPosicionActual();
+            int x=p.x;
+            int y=p.y;
+            h1= (x+y )-1;
+            int con=0;
+            Nodo padre=n.getPadre();
+           while(padre!=null){
+
+                 padre=padre.getPadre();
+                 con++;
+           }
+
+           hfin=h1+con;
+
+
+            return  hfin;
+        }
+    
+    
     
     
     public abstract Nodo ejecutar ();

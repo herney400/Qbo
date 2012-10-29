@@ -50,7 +50,7 @@ public class Sensor {
     public int buscarArriba(Point posicion, Nodo n){
          mundo=n.getEstado().getAmbiente().clone();
          valorEncontrado = mundo[ posicion.y-1 ][ posicion.x ];
-        System.out.println(""+posicion);
+//        System.out.println(""+posicion);
         return valorEncontrado;
     }//buscarArriba
     
@@ -85,7 +85,7 @@ public class Sensor {
      */
     public int buscarIzquierda(Point posicion, Nodo n){
          mundo=n.getEstado().getAmbiente().clone();
-        valorEncontrado = mundo[ posicion.x - 1 ][ posicion.y ];
+        valorEncontrado = mundo[ posicion.y ][ posicion.x-1 ];
         return valorEncontrado;
     }//buscarIzquierda
             

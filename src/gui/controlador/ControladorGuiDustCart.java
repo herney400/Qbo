@@ -49,6 +49,14 @@ public class ControladorGuiDustCart {
         
     }
     
+    public Point getDepos2k(){
+    
+     return load.getpDeposito2k();
+    }
+    public Point getDepos3k(){
+    
+     return load.getpDeposito3k();
+    }
    public int[][] getMundo(){
         int mundo[][]=load.getMundo();
         return mundo;
@@ -56,6 +64,7 @@ public class ControladorGuiDustCart {
     
     public void setImagenMundo(){
        guiDustCart.setImagenMundoGui( load.getMundo() ); 
+    
     }
 
     void seleccionarRobot(boolean isDustCart, boolean isR2D2) {

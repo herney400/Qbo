@@ -39,9 +39,18 @@ public class CrearBusqueda {
         Expandir expandir=null;
         if(tipo.equals("Amplitud")){
             expandir= new Amplitud(nodoRaiz.clone(),pInicial,mapa);
-        }else
+        }else if(tipo.equals("Costo"))
         {
-            System.out.print("paila");
+             expandir= new Costo(nodoRaiz.clone(),pInicial,mapa); 
+        }else if(tipo.equals("Profundidad") )
+        {
+            expandir= new Profundidad(nodoRaiz.clone(),pInicial,mapa); 
+        
+        }else if(tipo.equals("Avara")){
+//            nodoRaiz.clone().setHeuristica(1000);
+             expandir= new Avara(nodoRaiz.clone(),pInicial,mapa); 
+        }else if(tipo.equals("A")){ 
+               expandir= new Aestrella(nodoRaiz.clone(),pInicial,mapa); 
         }
         return expandir;
     } 

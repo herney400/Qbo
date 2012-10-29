@@ -7,6 +7,7 @@ package gui;
 import dao.CargarMundo;
 import gui.controlador.ControladorGuiDustCart;
 import java.awt.Point;
+import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -14,6 +15,7 @@ import modelo.CrearBusqueda;
 import modelo.EstadoActual;
 import modelo.Expandir;
 import modelo.Nodo;
+import modelo.Profundidad;
 import modelo.Robot;
 
 
@@ -21,7 +23,7 @@ import modelo.Robot;
  *
  * @author fidelhpc
  * 
- * estos es un comentario 
+ * 
  * 
  * 
  */
@@ -74,7 +76,6 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
         jPanelBusquedas = new javax.swing.JPanel();
         jComboBoxTipoBusqueda = new javax.swing.JComboBox();
         jComboBoxNoinformada = new javax.swing.JComboBox();
-        jComboBoxInformadad = new javax.swing.JComboBox();
         jPanelBotones = new javax.swing.JPanel();
         jButtonEjecutar = new javax.swing.JButton();
         jButtonResetear = new javax.swing.JButton();
@@ -111,9 +112,7 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxNoinformada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Amplitud", "Costo Uniforme", "Profundidad" }));
-
-        jComboBoxInformadad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Avara", "A*" }));
+        jComboBoxNoinformada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Amplitud", "Costo", "Profundidad", "Avara", "A" }));
 
         javax.swing.GroupLayout jPanelBusquedasLayout = new javax.swing.GroupLayout(jPanelBusquedas);
         jPanelBusquedas.setLayout(jPanelBusquedasLayout);
@@ -122,9 +121,8 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
             .addGroup(jPanelBusquedasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBusquedasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxTipoBusqueda, 0, 146, Short.MAX_VALUE)
-                    .addComponent(jComboBoxNoinformada, 0, 146, Short.MAX_VALUE)
-                    .addComponent(jComboBoxInformadad, 0, 146, Short.MAX_VALUE))
+                    .addComponent(jComboBoxTipoBusqueda, 0, 208, Short.MAX_VALUE)
+                    .addComponent(jComboBoxNoinformada, 0, 146, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelBusquedasLayout.setVerticalGroup(
@@ -133,9 +131,7 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
                 .addComponent(jComboBoxTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBoxNoinformada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxInformadad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jPanelBotones.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -158,8 +154,8 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonResetear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                    .addComponent(jButtonEjecutar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                    .addComponent(jButtonResetear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(jButtonEjecutar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelBotonesLayout.setVerticalGroup(
@@ -199,17 +195,17 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
             .addGroup(jPanelResultadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jLabelProfundidad, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelResultadosLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                         .addComponent(jLabelNodosExpandidos))
                     .addGroup(jPanelResultadosLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addComponent(jLabelTiempoComputo)))
                 .addContainerGap())
         );
@@ -245,6 +241,11 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
 
         jButtonVerSolucion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/android.png"))); // NOI18N
         jButtonVerSolucion.setText("Ver Solución");
+        jButtonVerSolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerSolucionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelControlesLayout = new javax.swing.GroupLayout(jPanelControles);
         jPanelControles.setLayout(jPanelControlesLayout);
@@ -253,11 +254,11 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelControlesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonVerSolucion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(jButtonVerSolucion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                     .addComponent(jPanelBusquedas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelResultados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelBotones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCargar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                    .addComponent(jButtonCargar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelControlesLayout.setVerticalGroup(
@@ -273,7 +274,7 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
                 .addComponent(jPanelResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonVerSolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jPanelAmbiente.setBorder(javax.swing.BorderFactory.createTitledBorder("Ambiente"));
@@ -293,7 +294,7 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelAmbiente, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                    .addComponent(jPanelAmbiente, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
                     .addComponent(jPanelControles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -306,13 +307,15 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
         controlador.cargarMundo();
         cargarImagenes();
         controlador.setImagenMundo();
+        
         int m[][]=controlador.getMundo();
         Point p=controlador.getpInicio();
         
-        EstadoActual esta= new EstadoActual(m, 0, 0, p);
+        EstadoActual esta= new EstadoActual(m, 0, 0, p, 0,false ,false,false, false,false);
         Robot Qbo=new Robot(m, p);
-        Nodo raiz= new Nodo("", esta, Qbo, null);
+        Nodo raiz= new Nodo("", esta, Qbo, null,0);
         crearbusqueda=new CrearBusqueda(raiz, p, m);  
+        
     }//GEN-LAST:event_jButtonCargarActionPerformed
 
     private void jButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjecutarActionPerformed
@@ -329,8 +332,12 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
     private void jComboBoxTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoBusquedaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxTipoBusquedaActionPerformed
- 
-    
+
+    private void jButtonVerSolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerSolucionActionPerformed
+    Profundidad p=new Profundidad();
+      pintarSolucion(p.solucion());
+    }//GEN-LAST:event_jButtonVerSolucionActionPerformed
+
    private void dibujarMundo(){
         for(int i = 0; i < 10; i++ ){
             for(int j = 0; j < 10; j++ ){
@@ -361,6 +368,15 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
         }//for i
         repaint();
     }
+    
+    public void pintarSolucion(Vector solucion){
+         for(int i=0;i<solucion.size();i++){
+            mundo[ ((Point)solucion.elementAt(i)).x][((Point)solucion.elementAt(i)).y].setImagen(new ImageIcon("./images/R2D2.png"));
+           
+         
+         }
+         repaint();
+    }
 
     public void setIsDustCart(boolean isDustCart) {
         this.isDustCart = isDustCart;
@@ -376,7 +392,6 @@ public class GuiDustCart extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonEjecutar;
     private javax.swing.JButton jButtonResetear;
     private javax.swing.JButton jButtonVerSolucion;
-    private javax.swing.JComboBox jComboBoxInformadad;
     private javax.swing.JComboBox jComboBoxNoinformada;
     private javax.swing.JComboBox jComboBoxTipoBusqueda;
     private javax.swing.JLabel jLabel1;

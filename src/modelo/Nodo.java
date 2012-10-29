@@ -17,19 +17,20 @@ public class Nodo {
      Robot robot; 
      //int pesoBasura=0;
      private String ruta="";
-     private int heuristica; 
+     private double heuristica; 
      Expandir espan;
      private EstadoActual estado;
      private Nodo padre;
-     int profundidad;
+     private int profundidad;
      int costoDelaRuta;
      String operadorAplicado;
      
-    public Nodo(String camino, EstadoActual estadoactual, Robot Qbo, Nodo nodo){    
+    public Nodo(String camino, EstadoActual estadoactual, Robot Qbo, Nodo nodo, int pr){    
        this.estado=estadoactual;
        this.ruta=camino;
        this.robot=Qbo;
        this.padre=nodo;
+       this.profundidad=pr;
     }
      
     public boolean esMeta(){
@@ -49,7 +50,7 @@ public class Nodo {
         return posicionInicial;
     }
     
-    public int getHeuristica() {
+    public double getHeuristica() {
         return heuristica;
     }
 
@@ -85,7 +86,7 @@ public class Nodo {
      
     @Override
     public Nodo clone(){
-        Nodo nodo=new Nodo(  ruta, estado, robot, padre);
+        Nodo nodo=new Nodo(  ruta, estado, robot, padre, profundidad);
         return nodo;
     }
 
@@ -115,5 +116,26 @@ public class Nodo {
      */
     public void setPadre(Nodo padre) {
         this.padre = padre;
+    }
+
+    /**
+     * @param heuristica the heuristica to set
+     */
+    public void setHeuristica(double heuristica) {
+        this.heuristica = heuristica;
+    }
+
+    /**
+     * @return the profundidad
+     */
+    public int getProfundidad() {
+        return profundidad;
+    }
+
+    /**
+     * @param profundidad the profundidad to set
+     */
+    public void setProfundidad(int profundidad) {
+        this.profundidad = profundidad;
     }
 }
